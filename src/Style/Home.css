@@ -1,0 +1,27 @@
+.homepage{
+    display:flex;
+    justify-content: center;
+    align-self: center;
+    /* background: #000; */
+}
+
+.mainpage{
+    display: flex;
+    flex: 6;
+    justify-content: center;
+    align-self: center;
+    flex-direction: column;
+    align-items: center;
+    /* width: 50%; */
+}
+.mainpage p{
+    max-width: 400px;
+}
+.mainimage{
+    display: flex;
+    flex: 6;
+    justify-content: center;
+    align-self: center;
+    /* width: 50%; */
+
+}

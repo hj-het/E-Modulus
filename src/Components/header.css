@@ -1,0 +1,102 @@
+/* General styling for header */
+header {
+    background-color: white; /* Blue background */
+    padding: 16px;
+    color: rgb(0, 0, 0);
+    /* padding: 4.7rem 0; */
+ 
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+  }
+  
+  .logo img {
+    max-height: 30px; 
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    gap: 20px; /* Space between nav items */
+  }
+  
+  nav ul li a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+  }
+  
+  nav ul li a:hover {
+    color: #030101;
+  }
+
+  .menu {
+    list-style: none; /* Remove bullet points */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+    display: flex; /* Align items in a row */
+    justify-content: center; /* Center the menu */
+    background-color: #e5e5e5; /* Light background color */
+}
+
+.menu-item {
+    margin: 0 15px; /* Spacing between items */
+    padding: 10px 15px; /* Padding for clickable area */
+    text-decoration: none; /* Remove underline */
+    color: #333; /* Text color */
+    transition: color 0.3s; /* Smooth transition for hover effect */
+}
+
+.menu-item:hover {
+    color: #f9f500; /* Change text color on hover */
+}
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    /* Tablet and mobile view */
+    .container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .logo {
+      margin-bottom: 20px;
+    }
+  
+    nav ul {
+      flex-direction: column;
+      gap: 10px; /* Space between items vertically */
+    }
+  
+    nav ul li a {
+      font-size: 18px; /* Slightly larger text for mobile */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    /* Mobile-specific view */
+    header {
+      padding: 12px;
+    }
+  
+    nav ul {
+      gap: 5px; /* Reduce gap between nav items */
+    }
+  
+    nav ul li a {
+      font-size: 16px;
+    }
+  
+    .logo img {
+      max-height: 40px; /* Smaller logo on very small screens */
+    }
+  }
+  
