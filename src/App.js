@@ -5,6 +5,8 @@ import Header from './Components/Header';
 import BuyYouTubeViews from './Components/BuyYouTubeViews';
 import Home from './Home';
 import GetStart from './Pages/GetStart';
+import Footer from './Components/Footer';
+import TermsOfService from './Pages/TermsOfService';
 // import BuyYouTubeSubscribers from './BuyYouTubeSubscribers';
 // import BuyYouTubeLikes from './BuyYouTubeLikes';
 // import BuyInstagramFollowers from './BuyInstagramFollowers';
@@ -24,7 +26,9 @@ const App = () => {
         <Route path="/buy-instagram-followers" element={<BuyInstagramFollowers />} /> */}
         {/* Add a fallback route for any unknown URLs */}
         <Route path="/" element={<Home/>} />
+        <Route path="/TermsOfService" element={<TermsOfService/>} />
       </Routes>
+      <Footer/>
     </Router>
   );
 };

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Container, TextField, Button, Paper, Typography } from '@mui/material';
 import { styled } from '@mui/system';
-import { useLocation } from 'react-router-dom'; // Import useLocation
-import "../Style/getstart.css"
-// import FetchDataComponent from './Api';
+import { useLocation } from 'react-router-dom';
+import "../Style/getstart.css";
+import axios from "axios";
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(10),
@@ -13,38 +13,53 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
 }));
 
 const GetStart = () => {
-  const location = useLocation(); // Get location object
-  const initialViews = location.state?.views || ''; // Get views from state
+  const location = useLocation();
+  const initialViews = location.state?.views || '';
 
-  // Initialize state for the form fields
   const [formData, setFormData] = useState({
     youtubeUrl: '',
     email: '',
-    views: initialViews // Set initial value for views
+    views: initialViews,
   });
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value,
     });
   };
 
-  // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("formData->", formData);
-    setFormData({
-      youtubeUrl: '',
-      email: '',
-      views: ''
-    });
+  
+    const payload = {
+      views: formData.views,
+      url: formData.youtubeUrl,
+    };
+  
+    try {
+      const response = await axios.post('/v1/orderDetails',  JSON.stringify(payload), {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+  
+      console.log("Response from API:", response.data);
+  
+      // Reset form data if needed
+      setFormData({
+        youtubeUrl: '',
+        email: '',
+        views: '',
+      });
+    } catch (error) {
+      console.error("Error posting data:", error.response?.data || error.message);
+    }
   };
+  
 
   return (
-    // <><FetchDataComponent />
     <Container maxWidth="sm" className="form-container">
       <StyledPaper elevation={3} className="styled-paper">
         <Typography variant="h4" component="h2" gutterBottom className="title">

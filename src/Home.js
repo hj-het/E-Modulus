@@ -2,6 +2,8 @@ import React from "react";
 import "./Style/Home.css";
 import Services from "./Service/Service";
 import Reasons from "./Reasons/Reason";
+import Steps from "./Steps/Step";
+import Testimonials from "./Testimonial/Testimonials";
 
 const Home = () => {
   return (
@@ -26,6 +28,8 @@ const Home = () => {
     </div>
     <Services/>
     <Reasons/>
+    <Steps/>
+    <Testimonials/>
     </div>
   );
 };
