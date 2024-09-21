@@ -7,6 +7,7 @@ import Home from './Home';
 import GetStart from './Pages/GetStart';
 import Footer from './Components/Footer';
 import TermsOfService from './Pages/TermsOfService';
+import PrivacyPolicy from './PrivacyPolicy/PrivacyPolicy';
 // import BuyYouTubeSubscribers from './BuyYouTubeSubscribers';
 // import BuyYouTubeLikes from './BuyYouTubeLikes';
 // import BuyInstagramFollowers from './BuyInstagramFollowers';
@@ -27,6 +28,8 @@ const App = () => {
         {/* Add a fallback route for any unknown URLs */}
         <Route path="/" element={<Home/>} />
         <Route path="/TermsOfService" element={<TermsOfService/>} />
+        <Route path="/PrivacyPolicy" element={<PrivacyPolicy/>} />
+
       </Routes>
       <Footer/>
     </Router>

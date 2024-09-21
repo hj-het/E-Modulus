@@ -1,0 +1,48 @@
+.privacy_policy{
+    margin:  0 12%  ;
+    color: #050708;
+    font: 18px /32px Montserrat, sans-serif !important;
+    letter-spacing: 0;
+}
+li{
+    list-style:none ;
+    margin: 20px 0;
+
+}
+a{
+    text-decoration: none;
+}
+
+h3{
+    font-size: 18px !important;
+}
+
+.ul li {
+    margin: 25px 0;
+    list-style: none;
+}
+li a,
+p a{
+    color: #ed2024;
+    text-decoration: none;
+    font-weight: bold;
+}
+.list_style li{
+    list-style-type: disc !important;
+    margin: 10px 0;
+
+}
+.points{
+    padding: 0 !important;
+}
+
+@font-face {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 100 900;
+    src: url(https://views4you.com/cf-fonts/v/montserrat/5.0.16/latin/wght/normal.woff2);
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    font-display: swap
+}
+
+

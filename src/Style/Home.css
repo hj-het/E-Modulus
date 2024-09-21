@@ -14,8 +14,20 @@
     align-items: center;
     /* width: 50%; */
 }
+.mainpage h1{
+    font-size: 50px;    
+    color: rgb(244, 49, 49);
+}
+.growth{
+    color: black;
+    /* margin-left: 10%; */
+}
 .mainpage p{
-    max-width: 400px;
+    max-width: 70%;
+    font-size: 25px;
+    font-family: initial;
+    letter-spacing: 1px;
+    margin-left: 21%;
 }
 .mainimage{
     display: flex;

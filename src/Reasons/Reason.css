@@ -45,8 +45,8 @@
     font-weight: bold;
   }
    
-  .description p {
-    max-width: 600px;
+  .reason-description p{
+    /* max-width: 600px; */
     color: #666;
     margin-top: 40px;
   }

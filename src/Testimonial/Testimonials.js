@@ -8,19 +8,19 @@ const testimonials = [
   {
     name: "Elizabeth",
     followers: "840k followers",
-    image: "https://via.placeholder.com/80", 
+    image: "./user.png", 
     text: "Well, the site is terrific!!! I got my services in a moment! They gave me more confidence to work harder and monetize my channel."
   },
   {
     name: "Lucy",
     followers: "100k followers",
-    image: "https://via.placeholder.com/80",
+    image: "./user.png",
     text: "One of my friends sent the link to a video on YouTube about this site. It has been just 1 month since I started my page. It was difficult at first but now, thanks to the helpful videos, it's easy!"
   },
   {
     name: "John",
     followers: "560k followers",
-    image: "https://via.placeholder.com/80",
+    image: "./user.png",
     text: "Wow! What a service. I've been following them for a while, thinking they might be fake, but they are not! Thank you."
   }
 ];

@@ -12,7 +12,7 @@ const Home = () => {
       <div className="mainpage">
         <h1>
           Organic YouTube <br />
-          Growth Service
+         <span className="growth">Growth Service</span> 
         </h1>
         <p>
           Lights, camera, and action! You're live on the best social media

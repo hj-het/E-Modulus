@@ -8,7 +8,7 @@ const ServiceCard = ({ icon, title, description, price, rating, btnText }) => {
         <span className="icon">{icon}</span>
         <h3 className="title">{title}</h3>
       </div>
-      <p className="description">{description}</p>
+      <p className="service-description">{description}</p>
       <button className="btn">{btnText}</button>
       <div className="price-and-rating">
         <span className="price">Starting at {price}</span>
