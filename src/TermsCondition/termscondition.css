@@ -1,42 +1,43 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-.privacy_policy{
-    margin:  0 12%  ;
+        
+.terms-condtition {
+    margin: 0 12%;
     color: #050708;
-    font: 18px /32px Montserrat, sans-serif !important;
+    font: 18px / 32px Montserrat, sans-serif !important;
     letter-spacing: 0;
 }
-.privacy_policy li{
-    list-style:none ;
+
+.terms-condtition li {
+    list-style: none;
     margin: 20px 0;
-
 }
-.privacy_policy a{
+
+.terms-condtition a {
     text-decoration: none;
+    color: #ed2024;
+    font-weight: bold;
 }
 
-.privacy_policy h3{
+.terms-condtition h3 {
     font-size: 18px !important;
 }
 
-.privacy_policy .ul li {
+.terms-condtition .ul li {
     margin: 25px 0;
     list-style: none;
 }
 
-.privacy_policy
-li a,
-p a{
+.terms-condtition p a {
     color: #ed2024;
-    text-decoration: none;
     font-weight: bold;
 }
-.list_style li{
+
+.list_style li {
     list-style-type: disc !important;
     margin: 10px 0;
-
 }
-.privacy_policy .points{
+
+.points {
     padding: 0 !important;
 }
 
@@ -46,7 +47,5 @@ p a{
     font-weight: 100 900;
     src: url(https://fonts.google.com/specimen/Montserrat);
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-    font-display: swap
+    font-display: swap;
 }
-
-

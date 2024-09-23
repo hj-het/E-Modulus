@@ -1,7 +1,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-.terms-container {
+.refund-policy {
   margin: 0 12%;
   color: #050708;
   font: 18px / 32px 'Montserrat', sans-serif !important;
@@ -9,63 +9,43 @@
   padding-bottom: 50px;
 }
 
-.terms-container h1, h2 {
+.refund-policy h1, h2 {
   font-family: 'Montserrat', sans-serif;
 }
 
-.terms-container h1 {
-  font-size: 2.5rem;
-  text-align: center;
+.refund-policy h1 {
+  font-size: 1.5rem;
+  /* text-align: center; */
   margin-bottom: 20px;
 }
 
-.terms-container h2.main-point {
-  font-size: 18px !important;
-  font-weight: bold;
-  color: black;
-  margin-top: 20px;
-}
-
-.terms-container p {
+.refund-policy p {
   font-size: 18px;
   color: #050708;
 }
 
-.terms-container li {
-  list-style: none;
-  margin: 20px 0;
-}
-
-.terms-container .roman-bold {
+.refund-policy .roman-bold {
   font-weight: bold;
   color: black;
 }
 
-.terms-container li a, p a {
+.refund-policy p a {
   color: #ed2024;
   text-decoration: none;
   font-weight: bold;
 }
 
-.terms-container .points {
-  padding: 0 !important;
-}
-
 @media (max-width: 768px) {
-  .terms-container {
+  .refund-policy {
     margin: 0 5%;
     padding: 10px;
   }
 
-  .terms-container h1 {
+  .refund-policy h1 {
     font-size: 2rem;
   }
 
-  .terms-container h2.main-point {
-    font-size: 16px;
-  }
-
-  .terms-container p, li {
+  .refund-policy p {
     font-size: 16px;
   }
 }

@@ -8,7 +8,7 @@ const Services = () => {
       <h2 className="serviceheading">
         Buy YouTube Views, Subscribers, And Likes
       </h2>
-      <div className="container ">
+      <div className="container-service">
         <ServiceCard
           icon="👁️"
           title="YouTube Views"

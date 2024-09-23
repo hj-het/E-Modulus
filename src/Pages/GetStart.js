@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Container, TextField, Button, Paper, Typography } from '@mui/material';
 import { styled } from '@mui/system';
 import { useLocation } from 'react-router-dom';
-import "../Style/getstart.css";
 import axios from "axios";
+import "../Style/getstart.css";
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(10),
@@ -30,24 +30,56 @@ const GetStart = () => {
     });
   };
 
+  const handlePayment = (amount) => {
+    const options = {
+      key: "rzp_test_gZomuVOWGW9UYC", 
+      amount: amount,
+      currency: "INR",
+      name: "Your Company",
+      description: "Test Transaction",
+      image: "https://yourlogo.com/logo.png",
+      handler: function (response) {
+        alert(`Payment Successful! Payment ID: ${response.razorpay_payment_id}`);
+
+      },
+      prefill: {
+        name: formData.email, 
+        email: formData.email,
+        contact: "9999999999" 
+      },
+      notes: {
+        address: "Some Address"
+      },
+      theme: {
+        color: "#3399cc"
+      }
+    };
+
+    const rzp = new window.Razorpay(options);
+    rzp.open();
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     const payload = {
       views: formData.views,
       url: formData.youtubeUrl,
     };
-  
+
     try {
-      const response = await axios.post('/v1/orderDetails',  JSON.stringify(payload), {
+      const response = await axios.post('/v1/orderDetails', JSON.stringify(payload), {
         headers: {
           'Content-Type': 'application/json',
         },
       });
-  
+
       console.log("Response from API:", response.data);
-  
-      // Reset form data if needed
+
+
+      handlePayment(response.data.amount); 
+
+    
       setFormData({
         youtubeUrl: '',
         email: '',
@@ -57,7 +89,6 @@ const GetStart = () => {
       console.error("Error posting data:", error.response?.data || error.message);
     }
   };
-  
 
   return (
     <Container maxWidth="sm" className="form-container">
