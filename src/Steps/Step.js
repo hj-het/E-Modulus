@@ -1,108 +1,48 @@
-import React, { useEffect } from 'react';
-import './Steps.css';
+import React from 'react';
+import '../Steps/Steps.css'
+
+// import arrowDown from '../../public/Group 15.png'; 
+// import arrowUp from '../../public/Group 16.png'; 
 
 const Steps = () => {
-
-  useEffect(() => {
-    const sections = document.querySelectorAll('.step-section');
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('show');
-        } else {
-          entry.target.classList.remove('show');
-        }
-      });
-    });
-
-    sections.forEach(section => {
-      observer.observe(section);
-    });
-    
-    // Cleanup observer on unmount
-    return () => {
-      sections.forEach(section => observer.unobserve(section));
-    };
-  }, []);
-
   return (
-    <div className="stepcontainer">
-      <div className="step-section">
-        <div className="step-number">
-          <h2>Step 1</h2>
+    <div className="steps-container">
+      <div className="steps-item">
+        <div className="steps-icon">
+          <img src='./user-plus-bottom.png' alt=''></img>
         </div>
-        <div className="step-content">
-          <h1>How E-Modulus Works?</h1>
-          <p>Start by Choosing | What Do You Need as YouTube Growth Service</p>
-          <ul>
-            <li>
-              <strong>Strict it Rich</strong> | YouTube Subscribers In this
-              package, subscribers will be directed to your account immediately
-              after you make a purchase.
-            </li>
-            <li>
-              <strong>Better Late Than Never</strong> | YouTube Subscribers This
-              package will gradually direct subscribers to your YouTube account,
-              instead of all at once.
-            </li>
-            <li>
-              <strong>Turbo Likes</strong> These are the immediate likes for
-              your chosen video content.
-            </li>
-            <li>
-              <strong>Spreading Likes</strong> These are the gradually provided
-              likes for your perfectly designed content.
-            </li>
-            <li>
-              <strong>%100 Genuinely Fast Views</strong> Get the most valued
-              views as fast and as safe as you can.
-            </li>
-            <li>
-              <strong>%100 Genuinely Slow Views</strong> Sometimes it's best to
-              get them one by one.
-            </li>
-          </ul>
-        </div>
+        <h3 className="steps-title">1. Register Yourself</h3>
+        <p className="steps-text">
+          We offer a variety of packages to fit your needs and budget. Now it’s time to decide how many subscribers, likes, or views you need. You can buy as few as 500 subscribers or up to 50,000 views and 2,500 likes. The best quality, real, active, and organic YouTube services are waiting to be sent to your account.
+        </p>
       </div>
 
-      <div className="step-section reverse">
-        <div className="step-number">
-          <h2>Step 2</h2>
+      <div className="steps-arrow">
+        <img src='./Group15.png'  alt="Arrow up" className="arrow-img arrow-up" />
+      </div>
+      
+      <div className="steps-item">
+        <div className="steps-icon">
+          <img src='./Group6.png' alt=''></img>
         </div>
-        <div className="step-content">
-          <h1>How E-Modulus Delivers?</h1>
-          <p>You Choose the Package | We Do the Work Instantly</p>
-          <ul>
-            <li>
-              <strong>Instant Results</strong> | Once you make a purchase, you will see the subscribers flow into your account right away.
-            </li>
-            <li>
-              <strong>Customized Growth</strong> | Choose from various packages that best suit your channel's needs and watch the results happen.
-            </li>
-            <li>
-              <strong>Reliable Service</strong> | We ensure that all delivered subscribers and views are authentic and organic.
-            </li>
-          </ul>
-        </div>
+        <h3 className="steps-title">2. Choose Plan</h3>
+        <p className="steps-text">
+          A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring. Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live.
+        </p>
       </div>
 
-      <div className="step-section">
-        <div className="step-number">
-          <h2>Step 3</h2>
+      <div className="steps-arrow">
+        <img src='./Group16.png' alt="Arrow down" className="arrow-img arrow-down" />
+      </div>
+
+      <div className="steps-item">
+        <div className="steps-icon">
+          <img src='./Group.png' alt=''></img>
         </div>
-        <div className="step-content">
-          <h1>Final Step</h1>
-          <p>Enjoy the Growth | Reap the Benefits of E-Modulus</p>
-          <ul>
-            <li>
-              <strong>Analyze Growth</strong> | Track your progress and watch your channel grow.
-            </li>
-            <li>
-              <strong>Plan Next Steps</strong> | Continue using E-Modulus for sustained success.
-            </li>
-          </ul>
-        </div>
+        <h3 className="steps-title">3. Wait for the Magic</h3>
+        <p className="steps-text">
+          No worries, Views4You offers a money-back guarantee if you’re not satisfied with the service. Also, we have flexible delivery time – you can choose to get your subscribers delivered gradually or all at once.
+        </p>
       </div>
     </div>
   );

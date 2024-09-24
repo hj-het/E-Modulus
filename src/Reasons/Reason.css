@@ -1,4 +1,4 @@
-.why-views4you-container {
+.why-E-modulus-container {
     padding: 60px 20px;
     background-color: #f7f7f7;
   }
@@ -24,7 +24,7 @@
   
   .reasons-grid {
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
   }
   
@@ -70,9 +70,9 @@
       font-size: 24px;
     }}
 
-    @media (min-width: 425px) {
+    @media (max-width: 425px) {
       .reasons-grid {
-        grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: repeat(1, 1fr) !important;
         gap: 0px;
       }
       .reason-description p{

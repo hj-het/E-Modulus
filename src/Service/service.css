@@ -1,9 +1,10 @@
 .container-service {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   padding: 16px;
+  gap: 3%;
 }
 
 .service-card {
@@ -65,6 +66,7 @@
 .price-and-rating {
   display: flex;
   align-items: center;
+  justify-content: space-around;
 }
 
 .price {

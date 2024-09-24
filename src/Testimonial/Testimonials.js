@@ -1,31 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import './testimonial.css'; 
-
-const testimonials = [
-  {
-    name: "Elizabeth",
-    followers: "840k followers",
-    image: "./user.png", 
-    text: "Well, the site is terrific!!! I got my services in a moment! They gave me more confidence to work harder and monetize my channel."
-  },
-  {
-    name: "Lucy",
-    followers: "100k followers",
-    image: "./user.png",
-    text: "One of my friends sent the link to a video on YouTube about this site. It has been just 1 month since I started my page. It was difficult at first but now, thanks to the helpful videos, it's easy!"
-  },
-  {
-    name: "John",
-    followers: "560k followers",
-    image: "./user.png",
-    text: "Wow! What a service. I've been following them for a while, thinking they might be fake, but they are not! Thank you."
-  }
-];
+import axios from 'axios';
 
 const Testimonials = () => {
+  const [testimonials, setTestimonials] = useState([]);
+console.log("testimonials===>",testimonials)
+  useEffect(() => {
+    const fetchTestimonials = async () => {
+      try {
+        const response = await axios.get('/v1/getReviews');
+        console.log("response.data",response.data)
+        setTestimonials(response.data.data); 
+      } catch (error) {
+        console.error('Error fetching testimonials:', error);
+      }
+
+    };
+    fetchTestimonials();
+  }, []); 
+
   const settings = {
     dots: true,
     infinite: true,
@@ -57,21 +53,25 @@ const Testimonials = () => {
   return (
     <div className="testimonial-container">
       <h2>Reviews</h2>
-      <Slider {...settings}>
-        {testimonials.map((testimonial, index) => (
-          <div key={index} className="testimonial-card">
-            <div className="quote-icon">“</div>
-            <p className="testimonial-text">{testimonial.text}</p>
-            <div className="testimonial-author">
-              <img src={testimonial.image} alt={testimonial.name} className="testimonial-image" />
-              <div>
-                <p className="author-name">{testimonial.name}</p>
-                <p className="author-followers">{testimonial.followers}</p>
+      {testimonials.length > 0 ? (
+        <Slider {...settings}>
+          {testimonials.map((testimonial, index) => (
+            <div key={index} className="testimonial-card">
+              <div className="quote-icon">“</div>
+              <p className="testimonial-text">{testimonial.review}</p>
+              <div className="testimonial-author">
+                <img src={testimonial.profile_photo || './user.png'} alt={testimonial.name} className="testimonial-image" />
+                <div>
+                  <p className="author-name">{testimonial.name}</p>
+                  <p className="author-followers">{testimonial.followers} followers</p>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </Slider>
+          ))}
+        </Slider>
+      ) : (
+        <p>Loading testimonials...</p>
+      )}
     </div>
   );
 };

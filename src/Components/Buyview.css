@@ -1,6 +1,6 @@
 .viewpage {
   display: flex;
-  flex-wrap: wrap
+  flex-wrap: wrap;
   /* justify-content: center;
     align-self: center; */
   /* background: #000; */
@@ -59,12 +59,12 @@
   max-width: 500px;
   padding: 40px;
   background-color: #fff;
-  border-radius: 20px;
+  border-radius: 5px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
 }
 
 .box {
@@ -136,8 +136,8 @@
   font-weight: 700;
 }
 .box.box-border {
-  border: 2px solid darkred; /* Example border color */
-  background-color: #ffd7d7; /* Optional background color */
+  border: 2px solid darkred;
+  background-color: #ffd7d7;
 }
 .buy-now {
   background-color: black;
@@ -157,14 +157,86 @@
   transform: scale(1.05);
 }
 .box.selected {
-  border-color: darkred; /* Change border color for selected box */
-  background-color: #f6dbdb; /* Change background color for selected box */
+  border-color: darkred; 
+  background-color: #f6dbdb;
 }
 
 /* .box:hover {
     transform: scale(1.1);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
   } */
+
+  .tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e5e5e5; 
+    width: 100%;
+  }
+  
+  .tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    transition: color 0.3s ease-in-out;
+    position: relative;
+    font: 'Montserrat', sans-serif;
+    -webkit-font-smoothing: antialiased;
+
+  }
+  
+  .tab.active {
+    color: #e50914; 
+    font-weight: 700;
+  }
+  
+  .tab.active::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background-color: #e50914; 
+    bottom: -1px;
+    left: 0;
+  }
+  
+  .tab:not(.active):hover {
+    color: #837e7c;
+  }
+
+  .grey-title {
+    background-color: #f5f5f5;
+    padding: 15px;
+    text-align: center;
+    border-radius: 5px;
+    color: #333;
+    font-size: 14px;
+    font: 'Montserrat', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  .grey-title p {
+    margin: 0;
+  }
+  
+  .grey-title span {
+    font-weight: 500;
+  }
+  
+  .discount-info {
+    text-align: center;
+    background-color: #f5f5f5;
+    padding: 10px 0;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
+  }
+  
 
 .count {
   font-size: 20px;
@@ -176,42 +248,66 @@
   font-weight: normal;
 }
 .next-container {
-  display: flex; /* Flex layout to align buttons horizontally */
-  justify-content: center; /* Center the buttons */
-  gap: 20px; /* Add gap between buttons */
+  display: flex; 
+  justify-content: center;
+  gap: 20px; 
 }
 
 .next-container button {
-  background-color: #ed2024; /* Light background */
-  border: none; /* Remove default border */
-  padding: 10px 20px; /* Button padding */
-  cursor: pointer; /* Pointer cursor on hover */
-  border-radius: 5px; /* Rounded corners */
-  font-size: 16px; /* Increase font size */
-  font-weight: bold; /* Bold text */
-  display: flex; /* Align arrow and text */
+  background-color: #ed2024; 
+  border: none; 
+  padding: 10px 20px; 
+  cursor: pointer; 
+  border-radius: 5px; 
+  font-size: 16px;
+  font-weight: bold;
+  display: flex; 
   align-items: center;
   justify-content: center;
-  color: #ffffff; /* Text color */
-  transition: background-color 0.3s ease; /* Hover effect */
+  color: #ffffff; 
+  transition: background-color 0.3s ease;
 }
 
 .next-container button:disabled {
-  cursor: not-allowed; /* Disabled button styling */
+  cursor: not-allowed; 
   opacity: 0.5;
 }
 
 .next-container button:hover:not(:disabled) {
-  background-color: #000000; /* Slightly darker on hover */
+  background-color: #000000;
 }
 
 .next-container button:before {
-  /* content: "\2190"; Left arrow for previous button */
   margin-right: 10px;
 }
 
 .next-container button:nth-child(2):before {
-  /* content: "\2192";/ Right arrow for next button */
   margin-left: 10px;
-  margin-right: 0; /* Remove right margin for the next button */
+  margin-right: 0;
+}
+
+.features-points {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);  
+  gap: 10px;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: #333;
+}
+
+.checkmark {
+  color: #e50914;
+  font-size: 18px;
+  margin-right: 10px; 
+}
+
+.features div {
+  margin-bottom: 10px;
 }

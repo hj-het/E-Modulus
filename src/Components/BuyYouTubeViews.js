@@ -5,12 +5,14 @@ import "./Buyview.css";
 import $ from "jquery";
 import { GrCaretNext } from "react-icons/gr";
 import { GrCaretPrevious } from "react-icons/gr";
+import YouTubeCampaign from "./YouTube/YouTubeCampaign";
 
 const BuyYouTubeViews = () => {
   const [selectedBox, setSelectedBox] = useState(null);
   const [boxes, setBoxes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [currentTab, setCurrentTab] = useState("regular"); // State for managing the active tab
   const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(0);
   const itemsPerPage = 4;
@@ -18,12 +20,15 @@ const BuyYouTubeViews = () => {
   const handleBoxClick = (box) => {
     setSelectedBox(box);
   };
+
   console.log(loading);
   useEffect(() => {
     const fetchBoxes = async () => {
       try {
         const response = await axios.get("/v1/plans");
         console.log("API Response:", response);
+
+        // Store all boxes fetched from API
         setBoxes(response.data.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -49,14 +54,16 @@ const BuyYouTubeViews = () => {
 
   const handleBuyNow = () => {
     if (selectedBox) {
-      navigate("/get-start", { state: { views: selectedBox.views_count } });
+      navigate("/get-start", {
+        state: { views: selectedBox.views_count, subtype: selectedBox.subtype },
+      });
     } else {
       alert("Please select a box before proceeding.");
     }
   };
 
   const handleNext = () => {
-    if (currentIndex + itemsPerPage < boxes.length) {
+    if (currentIndex + itemsPerPage < filteredBoxes.length) {
       setCurrentIndex(currentIndex + itemsPerPage);
     }
   };
@@ -67,11 +74,20 @@ const BuyYouTubeViews = () => {
     }
   };
 
+  // Filter boxes based on currentTab (either "regular" or "ads")
+  const filteredBoxes = boxes.filter(
+    (box) => box.subscription_type === currentTab
+  );
+
+  // Get the current boxes to display based on the pagination
+  const currentBoxes = filteredBoxes.slice(
+    currentIndex,
+    currentIndex + itemsPerPage
+  );
+
   if (error) {
     return <div>{error}</div>;
   }
-
-  const currentBoxes = boxes.slice(currentIndex, currentIndex + itemsPerPage);
 
   return (
     <div className="viewpage">
@@ -80,9 +96,55 @@ const BuyYouTubeViews = () => {
           Buy YouTube <br />
           Views <span className="label-red">Instantly</span>
         </h1>
+        {/* <p>
+          E-Modulus is the safest way to buy YouTube Views with delivery in just
+          a few minutes. We offer multiple packages with real users for all
+          different needs - choose wisely!
+        </p> */}
       </div>
+
       <div className="section2">
         <div className="rectangle">
+          <div className="tabs">
+            <div className="Regular">
+              <button
+                className={`tab ${currentTab === "regular" ? "active" : ""}`}
+                onClick={() => {
+                  setCurrentTab("regular");
+                  setCurrentIndex(0);
+                  setSelectedBox(null);
+                }}
+              >
+                Regular Views
+              </button>
+            </div>
+            <div className="Ads">
+              <button
+                className={`tab ${currentTab === "ads" ? "active" : ""}`}
+                onClick={() => {
+                  setCurrentTab("ads");
+                  setCurrentIndex(0);
+                  setSelectedBox(null);
+                }}
+              >
+                Ads Views
+              </button>
+            </div>
+          </div>
+          <div className="grey-title">
+            {currentTab === "regular" ? (
+              <p>
+                <span>Limited-time discounts on YouTube views packages!</span>
+              </p>
+            ) : (
+              <p>
+                <span>
+                  The daily speed of the YouTube views service is up to 5,000
+                  views per day.
+                </span>
+              </p>
+            )}
+          </div>
           <div
             style={{
               display: "grid",
@@ -101,7 +163,7 @@ const BuyYouTubeViews = () => {
               >
                 <div className="left-col">
                   <span className="number">{box.views_count}</span>
-                  <span className="views">views</span>
+                  <span className="views">{box.subtype}</span>
                 </div>
                 <div className="right-col">
                   <div className="price">${box.original_price.toFixed(2)}</div>
@@ -112,15 +174,16 @@ const BuyYouTubeViews = () => {
               </div>
             ))}
           </div>
+
           <div className="next-container">
             <button onClick={handlePrev} disabled={currentIndex === 0}>
-              <GrCaretPrevious/>
+              <GrCaretPrevious />
             </button>
             <button
               onClick={handleNext}
-              disabled={currentIndex + itemsPerPage >= boxes.length}
+              disabled={currentIndex + itemsPerPage >= filteredBoxes.length}
             >
-              <GrCaretNext/> 
+              <GrCaretNext />
             </button>
           </div>
 
@@ -136,8 +199,31 @@ const BuyYouTubeViews = () => {
               Buy Now
             </button>
           </div>
+          <div className="6-points">
+            <div className="features-points">
+              <div className="feature-item">
+                <span className="checkmark">✔</span> Real & Organic Views
+              </div>
+              <div className="feature-item">
+                <span className="checkmark">✔</span> Refill Guaranteed
+              </div>
+              <div className="feature-item">
+                <span className="checkmark">✔</span> High Quality
+              </div>
+              <div className="feature-item">
+                <span className="checkmark">✔</span> No Drops
+              </div>
+              <div className="feature-item">
+                <span className="checkmark">✔</span> Instant Start
+              </div>
+              <div className="feature-item">
+                <span className="checkmark">✔</span> Privacy and Safety
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+      <YouTubeCampaign/>
     </div>
   );
 };

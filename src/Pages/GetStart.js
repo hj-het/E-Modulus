@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, TextField, Button, Paper, Typography } from '@mui/material';
 import { styled } from '@mui/system';
 import { useLocation } from 'react-router-dom';
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify'; 
+import 'react-toastify/dist/ReactToastify.css';
 import "../Style/getstart.css";
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
@@ -15,12 +17,22 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
 const GetStart = () => {
   const location = useLocation();
   const initialViews = location.state?.views || '';
-
+  const initialSubtype = location.state?.subtype || '';
   const [formData, setFormData] = useState({
     youtubeUrl: '',
     email: '',
     views: initialViews,
+    subtype: initialSubtype
   });
+
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+    document.body.appendChild(script);
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,22 +42,48 @@ const GetStart = () => {
     });
   };
 
+
+  const validateForm = () => {
+    const { youtubeUrl, email, views } = formData;
+
+
+    const urlPattern = /^(https?:\/\/)?(www\.youtube\.com|youtu\.?be)\/.+$/;
+
+    if (!urlPattern.test(youtubeUrl)) {
+      toast.error('Please enter a valid YouTube URL.');
+      return false;
+    }
+
+    // Validate email format
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+      toast.error('Please enter a valid email address.');
+      return false;
+    }
+
+    
+    if (!views || isNaN(views) || Number(views) <= 0) {
+      toast.error('Please enter a valid number of views.');
+      return false;
+    }
+
+    return true;
+  };
+
   const handlePayment = (amount) => {
     const options = {
-      key: "rzp_test_gZomuVOWGW9UYC", 
+      key: "rzp_test_VQLOJcsFJtVFzO", 
       amount: amount,
       currency: "INR",
-      name: "Your Company",
+      name: "Modulus Fintech",
       description: "Test Transaction",
       image: "https://yourlogo.com/logo.png",
       handler: function (response) {
-        alert(`Payment Successful! Payment ID: ${response.razorpay_payment_id}`);
-
+        toast.success(`Payment Successful! Payment ID: ${response.razorpay_payment_id}`); // Show success toast
       },
       prefill: {
-        name: formData.email, 
+        name: "het chunara",
         email: formData.email,
-        contact: "9999999999" 
       },
       notes: {
         address: "Some Address"
@@ -62,6 +100,11 @@ const GetStart = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Validate form data before submitting
+    if (!validateForm()) {
+      return;
+    }
+console.log("formData.views",formData)
     const payload = {
       views: formData.views,
       url: formData.youtubeUrl,
@@ -76,10 +119,9 @@ const GetStart = () => {
 
       console.log("Response from API:", response.data);
 
+      handlePayment(response.data.amount);
+      toast.success('Order details submitted successfully!'); // Show success toast
 
-      handlePayment(response.data.amount); 
-
-    
       setFormData({
         youtubeUrl: '',
         email: '',
@@ -87,6 +129,9 @@ const GetStart = () => {
       });
     } catch (error) {
       console.error("Error posting data:", error.response?.data || error.message);
+      
+      const message = error.response?.data?.message || 'An unexpected error occurred.';
+      toast.error(`Error: ${message}`); // Show error toast
     }
   };
 
@@ -137,9 +182,10 @@ const GetStart = () => {
             margin="normal"
             fullWidth
             name="views"
-            value={formData.views}
+            value={`${formData.views} ${formData.subtype}`}
             onChange={handleChange}
             className="text-field"
+            disabled 
             InputProps={{
               sx: {
                 borderRadius: '30px',
@@ -158,6 +204,7 @@ const GetStart = () => {
           </Button>
         </form>
       </StyledPaper>
+      <ToastContainer /> {/* Add ToastContainer to render the toasts */}
     </Container>
   );
 };
