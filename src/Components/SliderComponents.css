@@ -1,0 +1,86 @@
+.header2main{
+    border-top: 1px solid #e5e9ed;
+    border-bottom: 1px solid #e5e9ed;
+}
+.icon-item {
+    text-align: center;
+    padding: 10px;
+    
+  }
+  
+  .icon-item p {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #000;
+  }
+  
+  .slick-prev, .slick-next {
+    z-index: 1;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    color: #000;
+    /* color: red; Customize this to match your design */
+  }
+.slick-prev::before{
+    color: #000;
+  }
+
+  .slick-next::before{
+    color: #000;
+  }
+
+  .icon-item {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  padding: 10px;
+}
+
+.icon-item p {
+  margin: 0;
+  font-weight: bold;
+}
+
+.icon-item .dropdown-content {
+  display: none;
+  /* position: absolute; */
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  top: 50px;
+  left: 50%;
+  /* transform: translateX(-50%); */
+}
+
+.icon-item:hover .dropdown-content {
+  display: block;
+  
+}
+.icon-item:hover .slick-prev{
+    display: none;
+}
+
+.dropdown-content ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown-content ul li {
+  padding: 8px 12px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+
+.dropdown-content li a{
+  text-decoration: none;
+  color: black;
+}
+
+.dropdown-content ul li:hover {
+  background-color: #f1f1f1;
+}

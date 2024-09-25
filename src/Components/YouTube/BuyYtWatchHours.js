@@ -5,9 +5,10 @@ import "./Buyview.css";
 import $ from "jquery";
 import { GrCaretNext } from "react-icons/gr";
 import { GrCaretPrevious } from "react-icons/gr";
-import YouTubeCampaign from "./YouTube/YouTubeCampaign";
+import YouTubeCampaign from "./YouTubeCampaign";
 
-const BuyYouTubeViews = () => {
+
+const BuyYtWatchHours = () => {
   const [selectedBox, setSelectedBox] = useState(null);
   const [boxes, setBoxes] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -28,8 +29,10 @@ const BuyYouTubeViews = () => {
         const response = await axios.get("/v1/plans");
         console.log("API Response:", response);
 
-        // Store all boxes fetched from API
-        setBoxes(response.data.data);
+        const filteredData = response.data.data.filter(
+          (box) => box.type === "youtube" && box.subtype === "likes"
+        );
+        setBoxes(filteredData);
       } catch (error) {
         console.error("Error fetching data:", error);
         setError("Failed to load plans.");
@@ -55,7 +58,7 @@ const BuyYouTubeViews = () => {
   const handleBuyNow = () => {
     if (selectedBox) {
       navigate("/get-start", {
-        state: { views: selectedBox.views_count, subtype: selectedBox.subtype },
+        state: { subscribers: selectedBox.views_count, subtype: selectedBox.subtype },
       });
     } else {
       alert("Please select a box before proceeding.");
@@ -78,6 +81,7 @@ const BuyYouTubeViews = () => {
   const filteredBoxes = boxes.filter(
     (box) => box.subscription_type === currentTab
   );
+  console.log("filteredBoxes-->",filteredBoxes)
 
   // Get the current boxes to display based on the pagination
   const currentBoxes = filteredBoxes.slice(
@@ -94,7 +98,7 @@ const BuyYouTubeViews = () => {
       <div className="section1">
         <h1>
           Buy YouTube <br />
-          Views <span className="label-red">Instantly</span>
+          Watch Hours <br/><span className="label-red">Swiftly</span>
         </h1>
         {/* <p>
           E-Modulus is the safest way to buy YouTube Views with delivery in just
@@ -105,75 +109,92 @@ const BuyYouTubeViews = () => {
 
       <div className="section2">
         <div className="rectangle">
-          <div className="tabs">
-            <div className="Regular">
-              <button
-                className={`tab ${currentTab === "regular" ? "active" : ""}`}
-                onClick={() => {
-                  setCurrentTab("regular");
-                  setCurrentIndex(0);
-                  setSelectedBox(null);
-                }}
-              >
-                Regular Views
-              </button>
-            </div>
-            <div className="Ads">
-              <button
-                className={`tab ${currentTab === "ads" ? "active" : ""}`}
-                onClick={() => {
-                  setCurrentTab("ads");
-                  setCurrentIndex(0);
-                  setSelectedBox(null);
-                }}
-              >
-                Ads Views
-              </button>
-            </div>
-          </div>
-          <div className="grey-title">
-            {currentTab === "regular" ? (
-              <p>
-                <span>Limited-time discounts on YouTube views packages!</span>
-              </p>
-            ) : (
-              <p>
-                <span>
-                  The daily speed of the YouTube views service is up to 5,000
-                  views per day.
-                </span>
-              </p>
-            )}
-          </div>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(2, 1fr)",
-              gap: "20px",
-              marginBottom: "20px",
+        <div className="tabs">
+        <div className="Regular">
+          <button
+            className={`tab ${currentTab === "regular" ? "active" : ""}`}
+            onClick={() => {
+              setCurrentTab("regular");
+              setCurrentIndex(0);
+              setSelectedBox(null);
             }}
           >
-            {currentBoxes.map((box) => (
-              <div
-                key={box.id}
-                className={`box ${
-                  selectedBox?.id === box.id ? "selected" : ""
-                }`}
-                onClick={() => handleBoxClick(box)}
-              >
-                <div className="left-col">
-                  <span className="number">{box.views_count}</span>
-                  <span className="views">{box.subtype}</span>
-                </div>
-                <div className="right-col">
-                  <div className="price">${box.original_price.toFixed(2)}</div>
-                  {box.discount_price > 0 && (
-                    <span className="save">Discounted</span>
-                  )}
-                </div>
-              </div>
-            ))}
+            Regular Views
+          </button>
+        </div>
+        <div className="Ads">
+          <button
+            className={`tab ${currentTab === "ads" ? "active" : ""}`}
+            onClick={() => {
+              setCurrentTab("ads");
+              setCurrentIndex(0);
+              setSelectedBox(null);
+            }}
+          >
+            Ads Views
+          </button>
+        </div>
+        <div className="Influencer">
+          <button
+            className={`tab ${currentTab === "influencer" ? "active" : ""}`}
+            onClick={() => {
+              setCurrentTab("influencer");
+              setCurrentIndex(0);
+              setSelectedBox(null);
+            }}
+          >
+            Influencer Views
+          </button>
+        </div>
+      </div>
+
+      <div className="grey-title">
+        {currentTab === "regular" ? (
+          <p>
+            <span>Limited-time discounts on YouTube views packages!</span>
+          </p>
+        ) : currentTab === "ads" ? (
+          <p>
+            <span>
+              The daily speed of the YouTube views service is up to 5,000 views per day.
+            </span>
+          </p>
+        ) : (
+          <p>
+            <span>
+              Boost your YouTube presence with our exclusive Influencer Views!
+            </span>
+          </p>
+        )}
+      </div>
+
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(2, 1fr)",
+          gap: "20px",
+          marginBottom: "20px",
+        }}
+      >
+        {currentBoxes.map((box) => (
+          <div
+            key={box.id}
+            className={`box ${selectedBox?.id === box.id ? "selected" : ""}`}
+            onClick={() => handleBoxClick(box)}
+          >
+            <div className="left-col">
+              <span className="number">{box.views_count}</span>
+              <span className="views">{box.subtype}</span>
+            </div>
+            <div className="right-col">
+              <div className="price">${box.original_price.toFixed(2)}</div>
+              {box.discount_price > 0 && (
+                <span className="save">Discounted</span>
+              )}
+            </div>
           </div>
+        ))}
+      </div>
 
           <div className="next-container">
             <button onClick={handlePrev} disabled={currentIndex === 0}>
@@ -228,4 +249,4 @@ const BuyYouTubeViews = () => {
   );
 };
 
-export default BuyYouTubeViews;
+export default BuyYtWatchHours;

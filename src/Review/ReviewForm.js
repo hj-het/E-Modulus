@@ -79,8 +79,8 @@ const ReviewForm = () => {
                         <input type="hidden" id="ratingValue" name="rating" value={rating || ''} required />
                     </div>
 
-                    <div className="btn-right-column">
-                        <button type="submit">Send</button>
+                    <div className="reviewbutton">
+                        <button type="submit" className='buttontext'>Send</button>
                     </div>
                 </div>
             </form>

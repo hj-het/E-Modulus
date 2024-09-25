@@ -80,15 +80,15 @@
 }
 
 /* Media Queries for responsiveness */
-@media (min-width: 768px) {
+@media (max-width: 768px) {
   .service-card {
-    max-width: 45%;
+    width: 100%;
   }
 }
 
-@media (min-width: 1024px) {
+@media (max-width: 1024px) {
   .service-card {
-    max-width: 20%;
+    /* max-width: 20%;/ */
     flex: 1 1 calc(20% - 32px);
   }
 }
