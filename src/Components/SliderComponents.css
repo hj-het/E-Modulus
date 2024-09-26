@@ -7,6 +7,14 @@
     padding: 10px;
     
   }
+
+  .main-contain-icons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+     flex-wrap: wrap;
+  }
   
   .icon-item p {
     font-size: 1rem;
@@ -32,10 +40,16 @@
   }
 
   .icon-item {
+    /* display: inline-block;
+    text-align: center;
+    padding: 10px; */ 
+    
   position: relative;
-  display: inline-block;
-  text-align: center;
-  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
 }
 
 .icon-item p {
@@ -43,16 +57,17 @@
   font-weight: bold;
 }
 
+
 .icon-item .dropdown-content {
   display: none;
-  /* position: absolute; */
+  position: absolute;
   background-color: white;
   min-width: 160px;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
   z-index: 1;
   top: 50px;
   left: 50%;
-  /* transform: translateX(-50%); */
+  transform: translateX(-50%);
 }
 
 .icon-item:hover .dropdown-content {
@@ -73,6 +88,7 @@
   padding: 8px 12px;
   cursor: pointer;
   white-space: nowrap;
+  text-align: left;
 }
 
 

@@ -1,0 +1,85 @@
+.faq-container {
+    width: 70%;
+    margin: 40px auto;
+    padding-top: 20px;
+    padding-bottom: 50px;
+}
+
+.faq-row-title {
+    font-size: 22px;
+    color: #d32f2f;
+    background: #fff;
+    cursor: pointer;
+    padding: 18px 25px;
+    margin: 15px 0;
+    border: 2px solid #d32f2f;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    font-weight: 700;
+    transition: all 0.3s ease-in-out;
+}
+
+.faq-row-title:hover {
+    background: #fce4ec;
+}
+
+.faq-row-content {
+    font-size: 18px;
+    color: #333;
+    padding: 20px 30px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin: 10px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.faq-arrow {
+    font-size: 24px;
+    font-weight: bold;
+    float: right;
+    transition: transform 0.3s ease-in-out;
+}
+
+.faq-active .faq-arrow {
+    transform: rotate(180deg); 
+}
+
+.faq-row-title:after {
+    content: "+"; 
+    float: right;
+    font-size: 28px;
+    color: #d32f2f;
+}
+
+.faq-active.faq-row-title:after {
+    content: "-"; 
+}
+
+@media screen and (max-width: 768px) {
+    .faq-container {
+        width: 95%;
+        padding: 10px;
+    }
+
+    .faq-row-title {
+        font-size: 20px;
+        padding: 15px 20px;
+    }
+
+    .faq-row-content {
+        font-size: 16px;
+        padding: 15px 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .faq-row-title {
+        font-size: 18px;
+        padding: 10px 15px;
+    }
+
+    .faq-row-content {
+        font-size: 14px;
+        padding: 10px 15px;
+    }
+}

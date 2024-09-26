@@ -7,6 +7,8 @@ import Testimonials from "./Testimonial/Testimonials";
 import FooterBanner from "./FooterBanner/FooterBanner";
 // import YouTubeCampaign from "./Components/YouTube/YouTubeCampaign";
 import ReviewForm from "./Review/ReviewForm";
+import FaqPage from "./FaqPage/QuestionPage";
+import GuaranteeSection from "./Qurrenty/GuaranteeSection";
 
 const Home = () => {
   return (
@@ -33,6 +35,8 @@ const Home = () => {
       <Services />
       <Reasons />
       <Steps />
+      <GuaranteeSection/>
+      <FaqPage/>
       <ReviewForm/>
       <Testimonials />
       <FooterBanner/>

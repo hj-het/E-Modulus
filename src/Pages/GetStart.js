@@ -18,11 +18,13 @@ const GetStart = () => {
   const location = useLocation();
   const initialViews = location.state?.views || '';
   const initialSubtype = location.state?.subtype || '';
+  const initialPrice = location.state?.original_price || '';
   const [formData, setFormData] = useState({
     youtubeUrl: '',
     email: '',
     views: initialViews,
-    subtype: initialSubtype
+    subtype: initialSubtype,
+    original_price: initialPrice
   });
 
   useEffect(() => {
@@ -182,7 +184,7 @@ console.log("formData.views",formData)
             margin="normal"
             fullWidth
             name="views"
-            value={`${formData.views} ${formData.subtype}`}
+            value={`${formData.views} ${formData.subtype} $ ${formData.original_price}`}
             onChange={handleChange}
             className="text-field"
             disabled 

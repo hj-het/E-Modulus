@@ -1,102 +1,136 @@
 /* General styling for header */
 header {
-    background-color: white; /* Blue background */
-    padding: 16px;
-    color: rgb(0, 0, 0);
-    /* padding: 4.7rem 0; */
- 
-  }
-  
-  .container-header {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap; /* Allows wrapping on smaller screens */
-  }
-  
-  .logo img {
-    max-height: 30px; 
-  }
-  
-  nav ul {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-    gap: 20px; /* Space between nav items */
-  }
-  
-  nav ul li a {
-    text-decoration: none;
-    color: rgb(0, 0, 0);
-    font-size: 16px;
-  }
-  
-  nav ul li a:hover {
-    color: #030101;
-  }
+  background-color: #fff;
+  /* Blue background */
+  padding: 10px;
+  color: rgb(0, 0, 0);
+  /* padding: 4.7rem 0; */
+  font-family: Montserrat, sans-serif !important;
+  /* box-shadow: 0 4px 10px #4A000015; */
 
-  .menu {
-    list-style: none; /* Remove bullet points */
-    padding: 0; /* Remove default padding */
-    margin: 0; /* Remove default margin */
-    display: flex; /* Align items in a row */
-    justify-content: center; /* Center the menu */
-    background-color: #e5e5e5; /* Light background color */
 }
 
-.menu-item {
-    margin: 0 15px; /* Spacing between items */
-    padding: 10px 15px; /* Padding for clickable area */
-    text-decoration: none; /* Remove underline */
-    color: #333; /* Text color */
-    transition: color 0.3s; /* Smooth transition for hover effect */
+.container-header {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  /* Allows wrapping on smaller screens */
 }
 
-.menu-item:hover {
-    color: #f9f500; /* Change text color on hover */
+.logo img {
+  max-height: 30px;
 }
+
+.left_nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.menu {
+  list-style: none;
+  /* Remove bullet points */
+  display: flex;
+  /* Align items in a row */
+  /* Center the menu */
+  /* background-color: #e5e5e5; Light background color */
+}
+
+.left_nav ul li {
+  padding: 0 25px;
+
+}
+
+
+
+.left_nav ul li a {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.left_nav ul li a:hover {
+  color: #ff0000;
+}
+
+
+
+.language {
+  margin-left: 15px;
+  display: flex;
+  align-items: center;
   
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    /* Tablet and mobile view */
-    .container {
+}
+.language p{
+  padding: 5px;
+  text-decoration: none;
+  color: #000000;
+  font-family: Montserrat, sans-serif !important;
+  font-weight: 400;
+}
+.language a img{
+  margin-bottom: 2px;
+  text-decoration: none;
+  color: #000000;
+}
+
+
+.language_list {
+  display: none;
+}
+
+
+
+
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+
+  /* Tablet and mobile view */
+  .container {
       flex-direction: column;
       align-items: center;
-    }
-  
-    .logo {
+  }
+
+  .logo {
       margin-bottom: 20px;
-    }
-  
-    nav ul {
+  }
+
+  nav ul {
       flex-direction: column;
-      gap: 10px; /* Space between items vertically */
-    }
-  
-    nav ul li a {
-      font-size: 18px; /* Slightly larger text for mobile */
-    }
+      gap: 10px;
+      /* Space between items vertically */
   }
-  
-  @media (max-width: 480px) {
-    /* Mobile-specific view */
-    header {
+
+  nav ul li a {
+      font-size: 18px;
+      /* Slightly larger text for mobile */
+  }
+}
+
+@media (max-width: 480px) {
+
+  /* Mobile-specific view */
+  header {
       padding: 12px;
-    }
-  
-    nav ul {
-      gap: 5px; /* Reduce gap between nav items */
-    }
-  
-    nav ul li a {
-      font-size: 16px;
-    }
-  
-    .logo img {
-      max-height: 40px; /* Smaller logo on very small screens */
-    }
   }
-  
+
+  nav ul {
+      gap: 5px;
+      /* Reduce gap between nav items */
+  }
+
+  nav ul li a {
+      font-size: 16px;
+  }
+
+  .logo img {
+      max-height: 40px;
+      /* Smaller logo on very small screens */
+  }
+}

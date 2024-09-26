@@ -19,6 +19,7 @@
   background-color: #f5f5f5;
   padding: 3%;
   border-radius: 41px;
+  flex-wrap: wrap;
 }
 
 .campaign-left {
