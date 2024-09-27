@@ -8,7 +8,8 @@ import FooterBanner from "./FooterBanner/FooterBanner";
 // import YouTubeCampaign from "./Components/YouTube/YouTubeCampaign";
 import ReviewForm from "./Review/ReviewForm";
 import FaqPage from "./FaqPage/QuestionPage";
-import GuaranteeSection from "./Qurrenty/GuaranteeSection";
+import GuaranteeSection from "./Gurrenty/GuaranteeSection";
+import Blog from "./Blog/Blog";
 
 const Home = () => {
   return (
@@ -18,7 +19,7 @@ const Home = () => {
           <h1>
             Organic YouTube <br />
             <span className="growth">Growth Service</span> <br/>
-            <span class="label-red">E-Modulus </span>
+            <span className="label-red">E-Modulus </span>
           </h1>
           <p>
             Lights, camera, and action! You're live on the best social media
@@ -29,7 +30,7 @@ const Home = () => {
           </p>
         </div>
         <div className="mainimage">
-          <img src="image-8.jpg" alt=""></img>
+          <img src="Home-page_1.png" alt=""></img>
         </div>
       </div>
       <Services />
@@ -39,6 +40,7 @@ const Home = () => {
       <FaqPage/>
       <ReviewForm/>
       <Testimonials />
+      <Blog/>
       <FooterBanner/>
     </div>
   );

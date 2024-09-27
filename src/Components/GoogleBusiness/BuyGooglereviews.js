@@ -82,16 +82,22 @@ const BuyGooglereviews = () => {
     }
   };
 
-  // Get unique subscription types
+
   const uniqueSubscriptionTypes = [
-    ...new Set(boxes.map((box) => box.subscription_type)),
+    ...new Set(
+      boxes
+        .filter((box) => box.subtype === "random-reviews") 
+        .map((box) => box.subscription_type)
+    ),
   ];
 
   // Filter boxes based on currentTab (either "youtube", "facebook", etc.) and currentSubscriptionType
   const filteredBoxes = boxes.filter(
-    (box) => box.type === "google-business" && box.subtype === "reviews"
-  );
-  console.log("filteredBoxes-->", filteredBoxes);
+    (box) =>
+      box.type === currentTab &&
+      box.subtype === "random-reviews" &&
+      box.subscription_type === currentSubscriptionType
+  )
 
   const currentBoxes = filteredBoxes.slice(
     currentIndex,
@@ -172,7 +178,7 @@ const BuyGooglereviews = () => {
               >
                 <div className="left-col">
                   <span className="number">{box.views_count}</span>
-                  <span className="views">{box.subtype}</span>
+                  <span className="views">Review</span>
                 </div>
                 <div className="right-col">
                   <div className="price">${box.original_price.toFixed(2)}</div>

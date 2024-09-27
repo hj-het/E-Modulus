@@ -253,7 +253,7 @@
     border-radius: 0;
     border-bottom: 2px solid transparent;
     padding: .4rem 1rem .55rem;
-    width: 100%;
+    min-width: 136px;
     height: 100%;
     cursor: pointer;
     -webkit-font-smoothing: antialiased;

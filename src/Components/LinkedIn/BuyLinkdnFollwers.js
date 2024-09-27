@@ -12,9 +12,9 @@ const BuyLinkdnFollers = () => {
   const [boxes, setBoxes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [currentTab, setCurrentTab] = useState("linkedn");
+  const [currentTab, setCurrentTab] = useState("linkedin");
   const [currentSubscriptionType, setCurrentSubscriptionType] =
-    useState("regular");
+    useState("real-followers");
   const [currentIndex, setCurrentIndex] = useState(0);
   const navigate = useNavigate();
   const itemsPerPage = 4;
@@ -29,7 +29,7 @@ const BuyLinkdnFollers = () => {
     const fetchBoxes = async () => {
       try {
         const response = await axios.post("/v1/plans", {
-          type: "linkedn",
+          type: "linkedin",
         });
         console.log("API Response:", response);
 
@@ -81,17 +81,21 @@ const BuyLinkdnFollers = () => {
       setCurrentIndex(currentIndex - itemsPerPage);
     }
   };
-
-  // Get unique subscription types
   const uniqueSubscriptionTypes = [
-    ...new Set(boxes.map((box) => box.subscription_type)),
+    ...new Set(
+      boxes
+        .filter((box) => box.subtype === "followers") 
+        .map((box) => box.subscription_type)
+    ),
   ];
 
   // Filter boxes based on currentTab (either "youtube", "facebook", etc.) and currentSubscriptionType
   const filteredBoxes = boxes.filter(
-    (box) => box.type === "linkedn" && box.subtype === "follow"
-  );
-  console.log("filteredBoxes-->", filteredBoxes);
+    (box) =>
+      box.type === currentTab &&
+      box.subtype === "followers" &&
+      box.subscription_type === currentSubscriptionType
+  )
 
   const currentBoxes = filteredBoxes.slice(
     currentIndex,
@@ -106,8 +110,8 @@ const BuyLinkdnFollers = () => {
     <div className="viewpage">
       <div className="section1">
         <h1>
-          Buy Telegram <br />
-          Members <span className="label-red">Fast</span>
+          Buy Linkedin <br />
+          Followers <span className="label-red">Fast</span>
         </h1>
         <p>
           E-Modulus now offers the opportunity to buy Google Business reviews at
@@ -140,7 +144,7 @@ const BuyLinkdnFollers = () => {
           </div>
 
           <div className="grey-title">
-            {currentSubscriptionType === "regular" ? (
+            {currentSubscriptionType === "real-active" ? (
               <p>
                 <span>Limited-time discounts on YouTube views packages!</span>
               </p>

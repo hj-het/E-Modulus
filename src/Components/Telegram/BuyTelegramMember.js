@@ -14,7 +14,7 @@ const BuyTelegramMembers = () => {
   const [error, setError] = useState(null);
   const [currentTab, setCurrentTab] = useState("telegram");
   const [currentSubscriptionType, setCurrentSubscriptionType] =
-    useState("regular");
+    useState("real-active");
   const [currentIndex, setCurrentIndex] = useState(0);
   const navigate = useNavigate();
   const itemsPerPage = 4;
@@ -82,16 +82,21 @@ const BuyTelegramMembers = () => {
     }
   };
 
-  // Get unique subscription types
   const uniqueSubscriptionTypes = [
-    ...new Set(boxes.map((box) => box.subscription_type)),
+    ...new Set(
+      boxes
+        .filter((box) => box.subtype === "followers") 
+        .map((box) => box.subscription_type)
+    ),
   ];
 
   // Filter boxes based on currentTab (either "youtube", "facebook", etc.) and currentSubscriptionType
   const filteredBoxes = boxes.filter(
-    (box) => box.type === "telegram" && box.subtype === "members"
-  );
-  console.log("filteredBoxes-->", filteredBoxes);
+    (box) =>
+      box.type === currentTab &&
+      box.subtype === "followers" &&
+      box.subscription_type === currentSubscriptionType
+  )
 
   const currentBoxes = filteredBoxes.slice(
     currentIndex,
@@ -140,7 +145,7 @@ const BuyTelegramMembers = () => {
           </div>
 
           <div className="grey-title">
-            {currentSubscriptionType === "regular" ? (
+            {currentSubscriptionType === "real-active" ? (
               <p>
                 <span>Limited-time discounts on YouTube views packages!</span>
               </p>

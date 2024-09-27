@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./contactUs.css";
 // import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 import { Link } from "react-router-dom";
-
+import { IoCall } from "react-icons/io5";
 const ContactUs = () => {
   const [formData, setFormData] = useState({
     fullName: "",
@@ -41,13 +41,17 @@ const ContactUs = () => {
             <li>Shoot Us An Email</li>
             <li>Message Us On X</li>
           </ul>
-          <h3>Call Us</h3>
-          <p>+91 994 343 0343</p>
+           <h3> Call Us</h3>
+          <p>+91 9913951731</p>
           <p>Call our team Mon-Fri from 8am to 5pm.</p>
 
-          <h3>Visit Us</h3>
-          <p>Chat to us in person at our India HQ.</p>
+          <h3>Address 1:</h3>
+          <p>11827 NC-226, Spruce Pine, NC 28777, United States
+         </p>
           {/* <p>S.G High Way, Ahmedabad - 454545</p> */}
+
+          <h3>Address 2:</h3>
+          <p>489, Ghoghamba, Panchmahals, Gujarat - 389365</p>
         </div>
 
         <div className="contact-right">

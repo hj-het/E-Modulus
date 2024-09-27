@@ -12,7 +12,7 @@ const BuyTwitterLikes = () => {
   const [boxes, setBoxes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [currentTab, setCurrentTab] = useState("twitter");
+  const [currentTab, setCurrentTab] = useState("x");
   const [currentSubscriptionType, setCurrentSubscriptionType] =
     useState("regular");
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -29,7 +29,7 @@ const BuyTwitterLikes = () => {
     const fetchBoxes = async () => {
       try {
         const response = await axios.post("/v1/plans", {
-          type: "twitter",
+          type: "x",
         });
         console.log("API Response:", response);
 
@@ -82,21 +82,27 @@ const BuyTwitterLikes = () => {
     }
   };
 
-  // Get unique subscription types
   const uniqueSubscriptionTypes = [
-    ...new Set(boxes.map((box) => box.subscription_type)),
+    ...new Set(
+      boxes
+        .filter((box) => box.subtype === "likes") 
+        .map((box) => box.subscription_type)
+    ),
   ];
 
   // Filter boxes based on currentTab (either "youtube", "facebook", etc.) and currentSubscriptionType
   const filteredBoxes = boxes.filter(
-    (box) => box.type === "twitter" && box.subtype === "likes"
-  );
-  console.log("filteredBoxes-->", filteredBoxes);
+    (box) =>
+      box.type === currentTab &&
+      box.subtype === "likes" 
+      // box.subscription_type === currentSubscriptionType
+  )
 
   const currentBoxes = filteredBoxes.slice(
     currentIndex,
     currentIndex + itemsPerPage
   );
+
 
   if (error) {
     return <div>{error}</div>;

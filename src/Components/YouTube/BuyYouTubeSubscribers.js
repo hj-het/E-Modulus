@@ -13,12 +13,14 @@ const BuyYouTubeSubscribers = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentTab, setCurrentTab] = useState("youtube");
-  const [currentSubscriptionType, setCurrentSubscriptionType] = useState("regular"); 
+  const [currentSubscriptionType, setCurrentSubscriptionType] = useState(
+    "Regular-Subscribers"
+  );
   const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(0);
   const itemsPerPage = 4;
 
-  console.log("boxes-->", boxes,loading,setCurrentTab);
+  console.log("boxes-->", boxes, loading, setCurrentTab);
 
   const handleBoxClick = (box) => {
     setSelectedBox(box);
@@ -58,7 +60,11 @@ const BuyYouTubeSubscribers = () => {
   const handleBuyNow = () => {
     if (selectedBox) {
       navigate("/get-start", {
-        state: { views: selectedBox.views_count, subtype: selectedBox.subtype, original_price: selectedBox.original_price},
+        state: {
+          views: selectedBox.views_count,
+          subtype: selectedBox.subtype,
+          original_price: selectedBox.original_price,
+        },
       });
     } else {
       alert("Please select a box before proceeding.");
@@ -78,11 +84,20 @@ const BuyYouTubeSubscribers = () => {
   };
 
   // Get unique subscription types
-  const uniqueSubscriptionTypes = [...new Set(boxes.map((box) => box.subscription_type))];
+  const uniqueSubscriptionTypes = [
+    ...new Set(
+      boxes
+        .filter((box) => box.subtype === "subscribers") // Conditional filtering for "views"
+        .map((box) => box.subscription_type)
+    ),
+  ];
 
   // Filter boxes based on currentTab (either "youtube", "facebook", etc.) and currentSubscriptionType
   const filteredBoxes = boxes.filter(
-    (box) => box.type === currentTab  && box.subtype === "subscribers" && box.subscription_type === currentSubscriptionType
+    (box) =>
+      box.type === currentTab &&
+      box.subtype === "subscribers" &&
+      box.subscription_type === currentSubscriptionType
   );
 
   const currentBoxes = filteredBoxes.slice(
@@ -105,20 +120,19 @@ const BuyYouTubeSubscribers = () => {
 
       <div className="section2">
         <div className="rectangle">
-        
-
           {/* Filter for Subscription Type */}
           <div className="subscription-filter">
             <ul className="tabs">
               {uniqueSubscriptionTypes.map((type) => (
                 <li
                   key={type}
-                  className={'tab currentSubscriptionType === type ? "active" : "" '}
+                  className={
+                    'tab currentSubscriptionType === type ? "active" : "" '
+                  }
                   onClick={() => {
                     setCurrentSubscriptionType(type);
                     setCurrentIndex(0);
                     setSelectedBox(null);
-                    
                   }}
                 >
                   {type}
@@ -128,15 +142,20 @@ const BuyYouTubeSubscribers = () => {
           </div>
 
           <div className="grey-title">
-            {currentSubscriptionType === "regular" ? (
+            {currentSubscriptionType === "Regular-Subscribers" ? (
               <p>
-                <span>Limited-time discounts on YouTube views packages!</span>
+                <span>Big discounts on all subscribers packages! Daily speed of subscribers service is 200 in a day.</span>
+              </p>
+            ) : currentSubscriptionType === "Influencer+" ? ( 
+              <p>
+                <span>
+                Every hour, receive one subscriber. It’s perfect for small channels to grow in a natural pattern!
+                </span>
               </p>
             ) : (
               <p>
                 <span>
-                  The daily speed of the YouTube views service is up to 5,000
-                  views per day.
+                  ''
                 </span>
               </p>
             )}

@@ -13,7 +13,7 @@ const BuyInstaFollowers = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentTab, setCurrentTab] = useState("instagram");
-  const [currentSubscriptionType, setCurrentSubscriptionType] = useState("regular"); 
+  const [currentSubscriptionType, setCurrentSubscriptionType] = useState("real-followers"); 
   const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(0);
   const itemsPerPage = 4;
@@ -77,14 +77,21 @@ const BuyInstaFollowers = () => {
     }
   };
 
-  // Get unique subscription types
-  const uniqueSubscriptionTypes = [...new Set(boxes.map((box) => box.subscription_type))];
+  const uniqueSubscriptionTypes = [
+    ...new Set(
+      boxes
+        .filter((box) => box.subtype === "followers") // Conditional filtering for "views"
+        .map((box) => box.subscription_type)
+    ),
+  ];
 
   // Filter boxes based on currentTab (either "youtube", "facebook", etc.) and currentSubscriptionType
   const filteredBoxes = boxes.filter(
-    (box) => box.type === "instagram" && box.subtype === "follow" 
-  );
-  console.log("filteredBoxes-->",filteredBoxes)
+    (box) =>
+      box.type === currentTab &&
+      box.subtype === "followers" &&
+      box.subscription_type === currentSubscriptionType
+  )
 
   const currentBoxes = filteredBoxes.slice(
     currentIndex,
@@ -129,7 +136,7 @@ const BuyInstaFollowers = () => {
           </div>
 
           <div className="grey-title">
-            {currentSubscriptionType === "regular" ? (
+            {currentSubscriptionType === "real-followers" ? (
               <p>
                 <span>Limited-time discounts on YouTube views packages!</span>
               </p>

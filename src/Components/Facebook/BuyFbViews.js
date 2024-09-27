@@ -14,7 +14,7 @@ const BuyFbViews = () => {
   const [error, setError] = useState(null);
   const [currentTab, setCurrentTab] = useState("facebook");
   const [currentSubscriptionType, setCurrentSubscriptionType] =
-    useState("regular");
+    useState("express");
   const [currentIndex, setCurrentIndex] = useState(0);
   const navigate = useNavigate();
   const itemsPerPage = 4;
@@ -81,17 +81,21 @@ const BuyFbViews = () => {
       setCurrentIndex(currentIndex - itemsPerPage);
     }
   };
-
-  // Get unique subscription types
   const uniqueSubscriptionTypes = [
-    ...new Set(boxes.map((box) => box.subscription_type)),
+    ...new Set(
+      boxes
+        .filter((box) => box.subtype === "views") 
+        .map((box) => box.subscription_type)
+    ),
   ];
 
   // Filter boxes based on currentTab (either "youtube", "facebook", etc.) and currentSubscriptionType
   const filteredBoxes = boxes.filter(
-    (box) => box.type === "facebook" && box.subtype === "views"
-  );
-  console.log("filteredBoxes-->", filteredBoxes);
+    (box) =>
+      box.type === currentTab &&
+      box.subtype === "views" &&
+      box.subscription_type === currentSubscriptionType
+  )
 
   const currentBoxes = filteredBoxes.slice(
     currentIndex,
@@ -142,7 +146,7 @@ const BuyFbViews = () => {
           </div>
 
           <div className="grey-title">
-            {currentSubscriptionType === "regular" ? (
+            {currentSubscriptionType === "express" ? (
               <p>
                 <span>Limited-time discounts on YouTube views packages!</span>
               </p>

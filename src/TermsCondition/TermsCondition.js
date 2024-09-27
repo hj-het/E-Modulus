@@ -3,7 +3,7 @@ import "./termscondition.css"
 
 const TermsCondition = () => {
   return (
-    <div class="terms-condtition">
+    <div className="terms-condtition">
     <h3>1. Introduction</h3>
     <p>Welcome to E Modulus. By accessing and using our services, you agree to comply with the following terms and conditions. These terms govern your use of our website and services, including boosting YouTube video views. Please read them carefully before using our platform.</p>
     
@@ -11,7 +11,7 @@ const TermsCondition = () => {
     <p>E Modulus offers services to help users grow their YouTube video views by connecting them with viewers. Our services are intended to enhance channel visibility and exposure. We do not guarantee any specific results, including subscriber growth, video monetization, or channel ranking.</p>
     
     <h3>3. User Responsibilities</h3>
-    <ul class="list_style">
+    <ul className="list_style">
         <li>To provide accurate and complete information during registration.</li>
         <li>Not to use our services for illegal activities, including uploading videos that violate YouTube’s community guidelines.</li>
         <li>To comply with all YouTube policies when using our services.</li>

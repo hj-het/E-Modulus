@@ -22,7 +22,7 @@ const AboutUs = () => {
           <p>Years Of Experience</p>
         </div> */}
         <div className="image-wrapper">
-          <img src="about-img-1.jpg" alt="Agency Team" className="main-image" />
+          <img src="about-image2.png" alt="Agency Team" className="main-image" />
           
         </div>
       </div>

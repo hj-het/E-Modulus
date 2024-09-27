@@ -77,12 +77,20 @@ const BuyYouTubeStreamViews = () => {
     }
   };
 
-  // Get unique subscription types
-  const uniqueSubscriptionTypes = [...new Set(boxes.map((box) => box.subscription_type))];
+   // Get unique subscription types
+   const uniqueSubscriptionTypes = [
+    ...new Set(
+      boxes
+        .filter((box) => box.subtype === "subscribers") 
+        .map((box) => box.subscription_type)
+    ),
+  ];
 
-  // Filter boxes based on currentTab (either "youtube", "facebook", etc.) and currentSubscriptionType
   const filteredBoxes = boxes.filter(
-    (box) => box.type === currentTab && box.subtype === "streamviews" && box.subscription_type === currentSubscriptionType
+    (box) =>
+      box.type === currentTab &&
+      box.subtype === "stream-views" &&
+      box.subscription_type === currentSubscriptionType
   );
 
   const currentBoxes = filteredBoxes.slice(

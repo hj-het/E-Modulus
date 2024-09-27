@@ -136,7 +136,7 @@ const SliderComponent = () => {
           <div className="dropdown-content">
             <ul>
               
-              <li><a href='/buy-telegram-mmb'>Buy Linkedin Follwers</a></li>
+              <li><a href='/buy-linkdn-followers'>Buy Linkedin Follwers</a></li>
             </ul>
           </div>
         </div>

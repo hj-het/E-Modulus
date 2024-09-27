@@ -13,7 +13,7 @@ const BuyInstaReelsViews = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentTab, setCurrentTab] = useState("instagram");
-  const [currentSubscriptionType, setCurrentSubscriptionType] = useState("regular"); 
+  const [currentSubscriptionType, setCurrentSubscriptionType] = useState("real-active"); 
   const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(0);
   const itemsPerPage = 4;
@@ -77,14 +77,21 @@ const BuyInstaReelsViews = () => {
     }
   };
 
-  // Get unique subscription types
-  const uniqueSubscriptionTypes = [...new Set(boxes.map((box) => box.subscription_type))];
+  const uniqueSubscriptionTypes = [
+    ...new Set(
+      boxes
+        .filter((box) => box.subtype === "reels-views") // Conditional filtering for "views"
+        .map((box) => box.subscription_type)
+    ),
+  ];
 
   // Filter boxes based on currentTab (either "youtube", "facebook", etc.) and currentSubscriptionType
   const filteredBoxes = boxes.filter(
-    (box) => box.type === "instagram" && box.subtype === "reelviews" 
-  );
-  console.log("filteredBoxes-->",filteredBoxes)
+    (box) =>
+      box.type === currentTab &&
+      box.subtype === "reels-views" &&
+      box.subscription_type === currentSubscriptionType
+  )
 
   const currentBoxes = filteredBoxes.slice(
     currentIndex,
@@ -99,7 +106,7 @@ const BuyInstaReelsViews = () => {
     <div className="viewpage">
       <div className="section1">
         <h1>
-          Buy YouTube <br />
+          Buy Instagram <br />
           Reels Views <br/>
           <span className="label-red">Organically</span>
         </h1>
@@ -130,7 +137,7 @@ const BuyInstaReelsViews = () => {
           </div>
 
           <div className="grey-title">
-            {currentSubscriptionType === "regular" ? (
+            {currentSubscriptionType === "real-active" ? (
               <p>
                 <span>Limited-time discounts on YouTube views packages!</span>
               </p>

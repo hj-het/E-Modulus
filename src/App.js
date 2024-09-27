@@ -33,6 +33,9 @@ import BuyTwitterLikes from './Components/Twitter/BuyTwitterLikes'
 import BuyWebsiteSignUps from './Components/Website/BuyWebsiteSignUps'
 import BuyGooglereviews from './Components/GoogleBusiness/BuyGooglereviews'
 import BuyTelegramMember from './Components/Telegram/BuyTelegramMember'
+import Blog from "./Blog/Blog";
+import BlogDetail from "./Blog/BlogDetail";
+import BuyLinkdnFollers from "./Components/LinkedIn/BuyLinkdnFollwers";
 
 const App = () => {
   return (
@@ -47,6 +50,8 @@ const App = () => {
         <Route path="/refund-policy" element={<RefundPolicy />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/contact-us" element={<ContactUs />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:id" element={<BlogDetail />} />
         <Route path="*" element={<NotFound />} />
      
 
@@ -89,6 +94,9 @@ const App = () => {
 
       {/* Telegram//// */}
        <Route path="/buy-telegram-mmb" element={<BuyTelegramMember />} />
+
+       {/* LinkedIn//// */}
+       <Route path="/buy-linkdn-followers" element={<BuyLinkdnFollers />} />
 
       </Routes>
       <Footer />
