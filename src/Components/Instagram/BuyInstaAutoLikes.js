@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./../YouTube/Buyview.css"
+import "./../YouTube/Buyview.css";
 import $ from "jquery";
 import { GrCaretNext } from "react-icons/gr";
 import { GrCaretPrevious } from "react-icons/gr";
@@ -13,12 +13,13 @@ const BuyInstaLikes = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentTab, setCurrentTab] = useState("instagram");
-  const [currentSubscriptionType, setCurrentSubscriptionType] = useState("high-quality"); 
+  const [currentSubscriptionType, setCurrentSubscriptionType] =
+    useState("high-quality");
   const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(0);
   const itemsPerPage = 4;
 
-  console.log("boxes-->", boxes,loading,setCurrentTab);
+  console.log("boxes-->", boxes, loading, setCurrentTab);
 
   const handleBoxClick = (box) => {
     setSelectedBox(box);
@@ -58,7 +59,12 @@ const BuyInstaLikes = () => {
   const handleBuyNow = () => {
     if (selectedBox) {
       navigate("/get-start", {
-        state: { views: selectedBox.views_count, subtype: selectedBox.subtype, original_price: selectedBox.original_price},
+        state: {
+          views: selectedBox.views_count,
+          subtype: selectedBox.subtype,
+          original_price: selectedBox.original_price,
+          platform: currentTab, // currentTab holds the platform type, e.g., 'youtube', 'instagram', etc.
+        },
       });
     } else {
       alert("Please select a box before proceeding.");
@@ -80,7 +86,7 @@ const BuyInstaLikes = () => {
   const uniqueSubscriptionTypes = [
     ...new Set(
       boxes
-        .filter((box) => box.subtype === "auto-likes") 
+        .filter((box) => box.subtype === "auto-likes")
         .map((box) => box.subscription_type)
     ),
   ];
@@ -91,7 +97,7 @@ const BuyInstaLikes = () => {
       box.type === currentTab &&
       box.subtype === "auto-likes" &&
       box.subscription_type === currentSubscriptionType
-  )
+  );
 
   const currentBoxes = filteredBoxes.slice(
     currentIndex,
@@ -109,24 +115,30 @@ const BuyInstaLikes = () => {
           Buy Instagram <br />
           Auto Likes <span className="label-red">Fastly</span>
         </h1>
+        <p>
+          E-Modulus comes to you with a brand new service to help you buy
+          Instagram auto-likes, which means no need to go manually with every
+          post you upload on your account. Within seconds of your upload to your
+          Instagram account, the system tends to detect it and starts to send
+          organic likes from real users automatically.
+        </p>
       </div>
 
       <div className="section2">
         <div className="rectangle">
-        
-
           {/* Filter for Subscription Type */}
           <div className="subscription-filter">
             <ul className="tabs">
               {uniqueSubscriptionTypes.map((type) => (
                 <li
                   key={type}
-                  className={'tab currentSubscriptionType === type ? "active" : "" '}
+                  className={`tab ${
+                    currentSubscriptionType === type ? "active" : ""
+                  }`}
                   onClick={() => {
                     setCurrentSubscriptionType(type);
                     setCurrentIndex(0);
                     setSelectedBox(null);
-                    
                   }}
                 >
                   {type}
@@ -151,12 +163,13 @@ const BuyInstaLikes = () => {
           </div>
 
           <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(2, 1fr)",
-              gap: "20px",
-              marginBottom: "20px",
-            }}
+            className="grid-container"
+            // style={{
+            //   display: "grid",
+            //   gridTemplateColumns: "repeat(2, 1fr)",
+            //   gap: "20px",
+            //   marginBottom: "20px",
+            // }}
           >
             {currentBoxes.map((box) => (
               <div

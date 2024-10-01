@@ -16,6 +16,7 @@
   width: 100%; /* Full width on mobile */
   max-width: 300px; /* Set a fixed max-width */
   flex: 1 1 calc(50% - 32px); /* Responsive layout for larger screens */
+  flex-wrap: wrap;
 }
 
 .serviceheading {
@@ -90,5 +91,13 @@
   .service-card {
     /* max-width: 20%;/ */
     flex: 1 1 calc(20% - 32px);
+  }
+}
+@media (max-width: 470px) {
+  .service-card {
+    display: flex;
+    min-width: 300px;
+    justify-content: center;
+    align-items: center;
   }
 }

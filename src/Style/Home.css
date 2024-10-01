@@ -1,89 +1,137 @@
-.homepage{
-    display:flex;
+/* General styling for homepage layout */
+.homepage {
+    display: flex;
     justify-content: center;
-    align-self: center;
+    align-items: center;
     flex-wrap: wrap;
-    /* background: #000; */
+    padding: 20px; /* Add padding for better mobile appearance */
 }
 
-.mainpage{
+.mainpage {
     display: flex;
     flex: 6;
     justify-content: center;
     align-self: center;
     flex-direction: column;
-    align-items: center;
-    /* width: 50%; */
+    align-items: flex-start;
+    text-align: left;
+    padding: 50px;
+    width: 50%; /* Default width for larger screens */
 }
-.mainpage h1{
-    font-size: 50px;    
-    color: rgb(244, 49, 49);
-}
-.growth{
-    color: black;
-    /* margin-left: 10%; */
-}
-.mainpage p{
-    max-width: 70%;
-    font-size: 25px;
-    font-family: initial;
-    /* letter-spacing: 1px; */
-    margin-left: 21%;
-    font: 400 1.125rem / 2rem 'Montserrat', sans-serif;
-    letter-spacing:0;
-    color: #050708;
-    -webkit-font-smoothing: antialiased;
 
+.mainpage h1 {
+    font-size: 50px;
+    color: rgb(244, 49, 49);
+    line-height: 1.2; /* Improve line height for readability */
 }
-.mainimage{
+
+.growth {
+    color: black;
+}
+
+.mainpage p {
+    max-width: 80%;
+    font-size: 25px;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0;
+    color: #050708;
+    margin-top: 20px; /* Add space between heading and paragraph */
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+.mainimage {
     display: flex;
     flex: 6;
     justify-content: center;
-    align-self: center;
-    /* width: 50%; */
-
+    align-items: center;
+    width: 50%;
 }
-.label-red{
+
+.mainimage img {
+    max-width: 100%;
+    height: auto; /* Ensure image is responsive */
+}
+
+.label-red {
     background-color: #ed2024;
     font-size: 1.75rem;
     line-height: 2rem;
     font-weight: 700;
-    display: inline-block;
     color: #fff;
-    padding: .8rem 1.2rem;
-    -moz-border-radius: .75rem;
-    -webkit-border-radius: .75rem;
-    border-radius: .75rem;
-    vertical-align: .5rem;
+    padding: 0.8rem 1.2rem;
+    border-radius: 0.75rem;
+    display: inline-block;
+    vertical-align: middle;
 }
-@media (max-width: 425px) {
-.mainpage p {
-    /* max-width: 70%; */
-   display: none;
-}
-.mainpage h1{
-    font-size: 25px;    
-    color: rgb(244, 49, 49);
 
-}.mainpage{
-    text-align: center  ;
-}.label-red{
-    font-size: 1rem;
+/* Media Queries */
 
-}.homepage{
-    flex-direction: column;
+
+@media (max-width: 426px) {
+    .mainpage p {
+        display: none; 
+    }
+
+    .mainpage h1 {
+        font-size: 25px;
+        color: rgb(244, 49, 49);
+    }
+
+    .mainpage {
+        text-align: center;
+        width: 100%; 
+        padding: 10px;
+        align-items: center;
+    }
+
+    .label-red {
+        font-size: 1rem;
+    }
+
+    .homepage {
+        flex-direction: column;
+    }
+    .mainimage{
+        /* display: flex;
+        justify-content: center; */
+        align-items: center;
+        height: 100%;
+        width: 90%;
+
+    }
+
+    .mainimage img {
+        /* max-width: 80%;  */
+        /* height: 400px; */
+        /* width: 300px; */
+        width: 100% !important;
+    }
 }
-}
+
+/* For tablets and small desktops */
 @media only screen and (max-width: 1280px) {
     .mainpage p {
-        /* max-width: 70%; */
+        max-width: 100%;
         margin-left: 0;
-       
-
-
-    }}
-    @media only screen and (max-width: 770px){
-        .mainpage h1{
-            font-size: 36px;
-        }
     }
+
+    .mainimage img {
+        max-width: 90%;
+    }
+}
+
+/* For mid-sized screens (laptops, tablets) */
+@media only screen and (max-width: 770px) {
+    .mainpage h1 {
+        font-size: 36px;
+    }
+
+    .mainpage p {
+        font-size: 18px;
+    }
+
+    .mainimage img {
+        max-width: 90%;
+    }
+}

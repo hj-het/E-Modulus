@@ -63,6 +63,7 @@ const BuyTelegramMembers = () => {
           views: selectedBox.views_count,
           subtype: selectedBox.subtype,
           original_price: selectedBox.original_price,
+          platform: currentTab, // currentTab holds the platform type, e.g., 'youtube', 'instagram', etc.
         },
       });
     } else {
@@ -85,7 +86,7 @@ const BuyTelegramMembers = () => {
   const uniqueSubscriptionTypes = [
     ...new Set(
       boxes
-        .filter((box) => box.subtype === "followers") 
+        .filter((box) => box.subtype === "followers")
         .map((box) => box.subscription_type)
     ),
   ];
@@ -96,7 +97,7 @@ const BuyTelegramMembers = () => {
       box.type === currentTab &&
       box.subtype === "followers" &&
       box.subscription_type === currentSubscriptionType
-  )
+  );
 
   const currentBoxes = filteredBoxes.slice(
     currentIndex,
@@ -115,9 +116,11 @@ const BuyTelegramMembers = () => {
           Members <span className="label-red">Fast</span>
         </h1>
         <p>
-          E-Modulus now offers the opportunity to buy Google Business reviews at
-          competitive rates. Enhance your online reputation with fast delivery
-          and authentic reviews!
+          Boost your Telegram community effortlessly with our "Buy Telegram
+          Members" service. Instantly grow your group's visibility, enhance
+          credibility, and attract organic engagement by adding real members.
+          Sit back, relax, and watch your Telegram channel thrive with increased
+          activity and influence.
         </p>
       </div>
 
@@ -129,9 +132,9 @@ const BuyTelegramMembers = () => {
               {uniqueSubscriptionTypes.map((type) => (
                 <li
                   key={type}
-                  className={
-                    'tab currentSubscriptionType === type ? "active" : "" '
-                  }
+                  className={`tab ${
+                    currentSubscriptionType === type ? "active" : ""
+                  }`}
                   onClick={() => {
                     setCurrentSubscriptionType(type);
                     setCurrentIndex(0);
@@ -160,12 +163,13 @@ const BuyTelegramMembers = () => {
           </div>
 
           <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(2, 1fr)",
-              gap: "20px",
-              marginBottom: "20px",
-            }}
+            className="grid-container"
+            // style={{
+            //   display: "grid",
+            //   gridTemplateColumns: "repeat(2, 1fr)",
+            //   gap: "20px",
+            //   marginBottom: "20px",
+            // }}
           >
             {currentBoxes.map((box) => (
               <div

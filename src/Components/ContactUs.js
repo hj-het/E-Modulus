@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./contactUs.css";
 // import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 import { Link } from "react-router-dom";
-import { IoCall } from "react-icons/io5";
+// import { IoCall } from "react-icons/io5";
 const ContactUs = () => {
   const [formData, setFormData] = useState({
     fullName: "",
@@ -35,13 +35,13 @@ const ContactUs = () => {
 
       <div className="contact-container">
         <div className="contact-left">
-          <h2>Chat With Us</h2>
+          {/* <h2>Chat With Us</h2>
           <ul>
             <li>Start A Live Chat</li>
             <li>Shoot Us An Email</li>
             <li>Message Us On X</li>
-          </ul>
-           <h3> Call Us</h3>
+          </ul> */}
+           <h2> Call Us</h2>
           <p>+91 9913951731</p>
           <p>Call our team Mon-Fri from 8am to 5pm.</p>
 

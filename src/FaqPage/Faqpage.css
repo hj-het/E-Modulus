@@ -57,7 +57,7 @@
 
 @media screen and (max-width: 768px) {
     .faq-container {
-        width: 95%;
+        width: 90%;
         padding: 10px;
     }
 
@@ -73,6 +73,10 @@
 }
 
 @media screen and (max-width: 480px) {
+    .faq-container {
+        width: 80%;
+        padding: 10px;
+    }
     .faq-row-title {
         font-size: 18px;
         padding: 10px 15px;

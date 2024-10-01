@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./../YouTube/Buyview.css"
+import "./../YouTube/Buyview.css";
 import $ from "jquery";
 import { GrCaretNext } from "react-icons/gr";
 import { GrCaretPrevious } from "react-icons/gr";
@@ -13,12 +13,13 @@ const BuyInstaFollowers = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentTab, setCurrentTab] = useState("instagram");
-  const [currentSubscriptionType, setCurrentSubscriptionType] = useState("real-followers"); 
+  const [currentSubscriptionType, setCurrentSubscriptionType] =
+    useState("real-followers");
   const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(0);
   const itemsPerPage = 4;
 
-  console.log("boxes-->", boxes,loading,setCurrentTab);
+  console.log("boxes-->", boxes, loading, setCurrentTab);
 
   const handleBoxClick = (box) => {
     setSelectedBox(box);
@@ -58,7 +59,12 @@ const BuyInstaFollowers = () => {
   const handleBuyNow = () => {
     if (selectedBox) {
       navigate("/get-start", {
-        state: { views: selectedBox.views_count, subtype: selectedBox.subtype, original_price: selectedBox.original_price},
+        state: {
+          views: selectedBox.views_count,
+          subtype: selectedBox.subtype,
+          original_price: selectedBox.original_price,
+          platform: currentTab,
+        },
       });
     } else {
       alert("Please select a box before proceeding.");
@@ -91,7 +97,7 @@ const BuyInstaFollowers = () => {
       box.type === currentTab &&
       box.subtype === "followers" &&
       box.subscription_type === currentSubscriptionType
-  )
+  );
 
   const currentBoxes = filteredBoxes.slice(
     currentIndex,
@@ -109,24 +115,29 @@ const BuyInstaFollowers = () => {
           Buy Instagram <br />
           Followers <span className="label-red">Fast</span>
         </h1>
+        <p>
+          Thanks to our high-quality Instagram services with express delivery,
+          your goals become tangible realities in a short time. Step into a
+          realm of limitless possibilities with E-Modulus, and start to buy
+          Instagram followers now.
+        </p>
       </div>
 
       <div className="section2">
         <div className="rectangle">
-        
-
           {/* Filter for Subscription Type */}
           <div className="subscription-filter">
             <ul className="tabs">
               {uniqueSubscriptionTypes.map((type) => (
                 <li
                   key={type}
-                  className={'tab currentSubscriptionType === type ? "active" : "" '}
+                  className={`tab ${
+                    currentSubscriptionType === type ? "active" : ""
+                  }`}
                   onClick={() => {
                     setCurrentSubscriptionType(type);
                     setCurrentIndex(0);
                     setSelectedBox(null);
-                    
                   }}
                 >
                   {type}
@@ -151,12 +162,13 @@ const BuyInstaFollowers = () => {
           </div>
 
           <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(2, 1fr)",
-              gap: "20px",
-              marginBottom: "20px",
-            }}
+            className="grid-container"
+            // style={{
+            //   display: "grid",
+            //   gridTemplateColumns: "repeat(2, 1fr)",
+            //   gap: "20px",
+            //   marginBottom: "20px",
+            // }}
           >
             {currentBoxes.map((box) => (
               <div

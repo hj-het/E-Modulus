@@ -14,7 +14,7 @@ const BuyLinkdnFollers = () => {
   const [error, setError] = useState(null);
   const [currentTab, setCurrentTab] = useState("linkedin");
   const [currentSubscriptionType, setCurrentSubscriptionType] =
-    useState("real-followers");
+    useState("real-active");
   const [currentIndex, setCurrentIndex] = useState(0);
   const navigate = useNavigate();
   const itemsPerPage = 4;
@@ -63,6 +63,7 @@ const BuyLinkdnFollers = () => {
           views: selectedBox.views_count,
           subtype: selectedBox.subtype,
           original_price: selectedBox.original_price,
+          platform: currentTab, // currentTab holds the platform type, e.g., 'youtube', 'instagram', etc.
         },
       });
     } else {
@@ -84,7 +85,7 @@ const BuyLinkdnFollers = () => {
   const uniqueSubscriptionTypes = [
     ...new Set(
       boxes
-        .filter((box) => box.subtype === "followers") 
+        .filter((box) => box.subtype === "followers")
         .map((box) => box.subscription_type)
     ),
   ];
@@ -95,7 +96,7 @@ const BuyLinkdnFollers = () => {
       box.type === currentTab &&
       box.subtype === "followers" &&
       box.subscription_type === currentSubscriptionType
-  )
+  );
 
   const currentBoxes = filteredBoxes.slice(
     currentIndex,
@@ -114,9 +115,11 @@ const BuyLinkdnFollers = () => {
           Followers <span className="label-red">Fast</span>
         </h1>
         <p>
-          E-Modulus now offers the opportunity to buy Google Business reviews at
-          competitive rates. Enhance your online reputation with fast delivery
-          and authentic reviews!
+          E-Modulus now offers your LinkedIn presence with our "Buy
+          LinkedIn Followers" service. Instantly grow your professional network,
+          increase credibility, and attract organic connections. Watch your
+          profile stand out with more followers, boosting your influence and
+          opportunities in your industry.
         </p>
       </div>
 
@@ -128,9 +131,9 @@ const BuyLinkdnFollers = () => {
               {uniqueSubscriptionTypes.map((type) => (
                 <li
                   key={type}
-                  className={
-                    'tab currentSubscriptionType === type ? "active" : "" '
-                  }
+                  className={`tab ${
+                    currentSubscriptionType === type ? "active" : ""
+                  }`}
                   onClick={() => {
                     setCurrentSubscriptionType(type);
                     setCurrentIndex(0);
@@ -159,12 +162,13 @@ const BuyLinkdnFollers = () => {
           </div>
 
           <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(2, 1fr)",
-              gap: "20px",
-              marginBottom: "20px",
-            }}
+            className="grid-container"
+            // style={{
+            //   display: "grid",
+            //   gridTemplateColumns: "repeat(2, 1fr)",
+            //   gap: "20px",
+            //   marginBottom: "20px",
+            // }}
           >
             {currentBoxes.map((box) => (
               <div

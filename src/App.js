@@ -36,6 +36,8 @@ import BuyTelegramMember from './Components/Telegram/BuyTelegramMember'
 import Blog from "./Blog/Blog";
 import BlogDetail from "./Blog/BlogDetail";
 import BuyLinkdnFollers from "./Components/LinkedIn/BuyLinkdnFollwers";
+import FooterBanner from "./FooterBanner/FooterBanner";
+import ThankYouPage from "./Thankyou/ThankYouPage";
 
 const App = () => {
   return (
@@ -97,8 +99,11 @@ const App = () => {
 
        {/* LinkedIn//// */}
        <Route path="/buy-linkdn-followers" element={<BuyLinkdnFollers />} />
+       <Route path="/thankyou" element={<ThankYouPage />} />
+
 
       </Routes>
+      <FooterBanner/>
       <Footer />
     </Router>
   );

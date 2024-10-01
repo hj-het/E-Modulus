@@ -39,7 +39,7 @@ const Footer = () => {
         <div className="pay_icon_right">
           <img src= "./visa.png" alt="Visa" />
           <img src='./master.png' alt="Mastercard" />
-          {/* <img src='./american.png"' alt="AmericanExpress" /> */}
+          <img src="./american.png" alt="american"/>
         </div>
       </div>
       <div className="site-info">

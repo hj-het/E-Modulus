@@ -6,12 +6,12 @@ const GuaranteeSection = () => {
   return (
     <div className="guarantee-container">
       <div className="guarantee-header">
-        <h1>Views4You’s Guarantee When You Buy YouTube Views</h1>
+        <h1>E-Modulus’s Guarantee When You Buy YouTube Views</h1>
         <p>
-          We know that you put in a lot of hours to produce amazing content on YouTube. Views4You works to give your content the popularity you deserve. With our services, your superb content is crowned with the reward of hundreds of thousands of views, just select how many you want!
+          We know that you put in a lot of hours to produce amazing content on YouTube. E-modulus works to give your content the popularity you deserve. With our services, your superb content is crowned with the reward of hundreds of thousands of views, just select how many you want!
         </p>
         <p>
-          To grow their YouTube subscribers and likes daily with Views4You, our customers buy YouTube views for every video they produce.
+          To grow their YouTube subscribers and likes daily with E-modulus, our customers buy YouTube views for every video they produce.
         </p>
       </div>
 
@@ -34,7 +34,7 @@ const GuaranteeSection = () => {
           <img src='./Guarantee.png' alt="Guarantee Icon" />
           <h2>Lowest Price Guaranteed</h2>
           <p>
-            Views4You services guarantee you the cheapest YouTube views on the market. If you find the same quality of YouTube views at a cheaper price, please let us know about it, and we promise to provide you with service at that price.
+            E-Modulus services guarantee you the cheapest YouTube views on the market. If you find the same quality of YouTube views at a cheaper price, please let us know about it, and we promise to provide you with service at that price.
           </p>
         </div>
       </div>

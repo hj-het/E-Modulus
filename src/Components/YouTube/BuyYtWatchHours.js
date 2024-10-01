@@ -6,6 +6,9 @@ import $ from "jquery";
 import { GrCaretNext } from "react-icons/gr";
 import { GrCaretPrevious } from "react-icons/gr";
 import YouTubeCampaign from "./YouTubeCampaign";
+import GuaranteeSection from "../../Gurrenty/GuaranteeSection";
+import Testimonials from "../../Testimonial/Testimonials";
+import FaqPage from "../../FaqPage/QuestionPage";
 
 const BuyYouTubeWatchHours = () => {
   const [selectedBox, setSelectedBox] = useState(null);
@@ -13,12 +16,13 @@ const BuyYouTubeWatchHours = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentTab, setCurrentTab] = useState("youtube");
-  const [currentSubscriptionType, setCurrentSubscriptionType] = useState("regular"); 
+  const [currentSubscriptionType, setCurrentSubscriptionType] =
+    useState("express");
   const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(0);
   const itemsPerPage = 4;
 
-  console.log("boxes-->", boxes,loading,setCurrentTab);
+  console.log("boxes-->", boxes, loading, setCurrentTab);
 
   const handleBoxClick = (box) => {
     setSelectedBox(box);
@@ -58,7 +62,12 @@ const BuyYouTubeWatchHours = () => {
   const handleBuyNow = () => {
     if (selectedBox) {
       navigate("/get-start", {
-        state: { views: selectedBox.views_count, subtype: selectedBox.subtype, original_price: selectedBox.original_price},
+        state: {
+          views: selectedBox.views_count,
+          subtype: selectedBox.subtype,
+          original_price: selectedBox.original_price,
+          platform: currentTab, // currentTab holds the platform type, e.g., 'youtube', 'instagram', etc.
+        },
       });
     } else {
       alert("Please select a box before proceeding.");
@@ -78,11 +87,20 @@ const BuyYouTubeWatchHours = () => {
   };
 
   // Get unique subscription types
-  const uniqueSubscriptionTypes = [...new Set(boxes.map((box) => box.subscription_type))];
+  const uniqueSubscriptionTypes = [
+    ...new Set(
+      boxes
+        .filter((box) => box.subtype === "watch-hours") // Conditional filtering for "views"
+        .map((box) => box.subscription_type)
+    ),
+  ];
 
   // Filter boxes based on currentTab (either "youtube", "facebook", etc.) and currentSubscriptionType
   const filteredBoxes = boxes.filter(
-    (box) => box.type === currentTab && box.subtype === "watchhours" && box.subscription_type === currentSubscriptionType
+    (box) =>
+      box.type === currentTab &&
+      box.subtype === "watch-hours" &&
+      box.subscription_type === currentSubscriptionType
   );
 
   const currentBoxes = filteredBoxes.slice(
@@ -101,24 +119,29 @@ const BuyYouTubeWatchHours = () => {
           Buy YouTube <br />
           Watch Hours <span className="label-red">Swiftly</span>
         </h1>
+        <p>
+          Check out our services to rapidly increase the viewership across your
+          entire YouTube channel. Just sit back, relax, buy YouTube watch hours,
+          and watch your YouTube videos take wings while it helps you enable
+          monetization.
+        </p>
       </div>
 
       <div className="section2">
         <div className="rectangle">
-        
-
           {/* Filter for Subscription Type */}
           <div className="subscription-filter">
             <ul className="tabs">
               {uniqueSubscriptionTypes.map((type) => (
                 <li
                   key={type}
-                  className={'tab currentSubscriptionType === type ? "active" : "" '}
+                  className={`tab ${
+                    currentSubscriptionType === type ? "active" : ""
+                  }`}
                   onClick={() => {
                     setCurrentSubscriptionType(type);
                     setCurrentIndex(0);
                     setSelectedBox(null);
-                    
                   }}
                 >
                   {type}
@@ -143,12 +166,13 @@ const BuyYouTubeWatchHours = () => {
           </div>
 
           <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(2, 1fr)",
-              gap: "20px",
-              marginBottom: "20px",
-            }}
+            className="grid-container"
+            // style={{
+            //   display: "grid",
+            //   gridTemplateColumns: "repeat(2, 1fr)",
+            //   gap: "20px",
+            //   marginBottom: "20px",
+            // }}
           >
             {currentBoxes.map((box) => (
               <div
@@ -222,6 +246,9 @@ const BuyYouTubeWatchHours = () => {
         </div>
       </div>
       <YouTubeCampaign />
+      <GuaranteeSection />
+      <Testimonials />
+      <FaqPage />
     </div>
   );
 };

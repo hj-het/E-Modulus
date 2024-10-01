@@ -1,64 +1,62 @@
-import React, { useEffect } from 'react';
+// import React, { useState } from 'react';
 
-const Razorpay = () => {
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
-    script.async = true;
+// const Razorpayreact = ({ email, amount }) => {
+//   const [paymentId, setPaymentId] = useState('');
 
-    script.onload = () => {
-      console.log('Razorpay script loaded successfully');
-    };
+//   // Function to load Razorpay script dynamically
+//   const loadScript = (src) => {
+//     return new Promise((resolve) => {
+//       const script = document.createElement('script');
+//       script.src = src;
+//       script.onload = () => {
+//         resolve(true);
+//       };
+//       script.onerror = () => {
+//         resolve(false);
+//       };
+//       document.body.appendChild(script);
+//     });
+//   };
 
-    script.onerror = () => {
-      console.error('Failed to load Razorpay script');
-    };
+//   // Function to display Razorpay payment gateway
+//   const displayRazorpay = async () => {
+//     const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js');
+    
+//     if (!res) {
+//       alert('Razorpay SDK failed to load. Are you online?');
+//       return;
+//     }
 
-    document.body.appendChild(script);
+//     const options = {
+//       key: 'rzp_test_YOUR_KEY_HERE', // Replace with your Razorpay key
+//       amount: amount * 100, // Razorpay needs the amount in paise (smallest currency unit)
+//       currency: 'INR',
+//       name: 'Your Company Name',
+//       description: 'Test Transaction',
+//       image: 'https://your-logo-url.com/logo.png',
+//       handler: function (response) {
+//         alert(`Payment Successful! Payment ID: ${response.razorpay_payment_id}`);
+//         setPaymentId(response.razorpay_payment_id);
+//       },
+//       prefill: {
+//         name: 'Your Name',
+//         email: email,
+//       },
+//       theme: {
+//         color: '#F37254',
+//       },
+//     };
 
-    // Cleanup the script when the component unmounts
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
+//     const rzp = new window.Razorpay(options);
+//     rzp.open();
+//   };
 
-  const handlePayment = () => {
-    if (window.Razorpay) {
-      const options = {
-        key: 'your_razorpay_key_here', // Replace with your Razorpay key
-        amount: 50000, // Amount in paise (50000 paise = 500 INR)
-        currency: 'INR',
-        name: 'Your Business Name',
-        description: 'Test Transaction',
-        image: 'https://your-logo-url.com/logo.png',
-        handler: function (response) {
-          console.log('Payment Successful!', response.razorpay_payment_id);
-        },
-        prefill: {
-          name: 'Your Name',
-          email: 'email@example.com',
-          contact: '9999999999',
-        },
-        notes: {
-          address: 'Corporate Office Address',
-        },
-        theme: {
-          color: '#3399cc',
-        },
-      };
+//   return (
+//     <div>
+//       <button onClick={displayRazorpay}>Pay Now</button>
+//       {paymentId && <p>Payment ID: {paymentId}</p>}
+//     </div>
+//   );
+// };
 
-      const paymentObject = new window.Razorpay(options);
-      paymentObject.open();
-    } else {
-      console.error('Razorpay SDK not loaded yet.');
-    }
-  };
-
-  return (
-    <div>
-      <button onClick={handlePayment}>Pay Now</button>
-    </div>
-  );
-};
-
-export default Razorpay;
+// export default Razorpayreact;

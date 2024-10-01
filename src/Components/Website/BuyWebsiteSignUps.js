@@ -63,6 +63,7 @@ const BuyWebsiteSignUps = () => {
           views: selectedBox.views_count,
           subtype: selectedBox.subtype,
           original_price: selectedBox.original_price,
+          platform: currentTab // currentTab holds the platform type, e.g., 'youtube', 'instagram', etc.
         },
       });
     } else {
@@ -129,9 +130,9 @@ const BuyWebsiteSignUps = () => {
               {uniqueSubscriptionTypes.map((type) => (
                 <li
                   key={type}
-                  className={
-                    'tab currentSubscriptionType === type ? "active" : "" '
-                  }
+                  className={`tab ${
+                    currentSubscriptionType === type ? "active" : ""
+                  }`}
                   onClick={() => {
                     setCurrentSubscriptionType(type);
                     setCurrentIndex(0);
@@ -159,13 +160,13 @@ const BuyWebsiteSignUps = () => {
             )}
           </div>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(2, 1fr)",
-              gap: "20px",
-              marginBottom: "20px",
-            }}
+          <div className="grid-container"
+            // style={{
+            //   display: "grid",
+            //   gridTemplateColumns: "repeat(2, 1fr)",
+            //   gap: "20px",
+            //   marginBottom: "20px",
+            // }}
           >
             {currentBoxes.map((box) => (
               <div

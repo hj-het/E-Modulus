@@ -6,6 +6,9 @@ import $ from "jquery";
 import { GrCaretNext } from "react-icons/gr";
 import { GrCaretPrevious } from "react-icons/gr";
 import YouTubeCampaign from "./YouTubeCampaign";
+import GuaranteeSection from "../../Gurrenty/GuaranteeSection";
+import FaqPage from "../../FaqPage/QuestionPage";
+import Testimonials from "../../Testimonial/Testimonials";
 
 const BuyYouTubeViews = () => {
   const [selectedBox, setSelectedBox] = useState(null);
@@ -13,12 +16,13 @@ const BuyYouTubeViews = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentTab, setCurrentTab] = useState("youtube");
-  const [currentSubscriptionType, setCurrentSubscriptionType] = useState("Regular"); 
+  const [currentSubscriptionType, setCurrentSubscriptionType] =
+    useState("Regular");
   const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(0);
   const itemsPerPage = 4;
 
-  console.log("boxes-->", boxes,loading,setCurrentTab);
+  console.log("boxes-->", boxes, loading, setCurrentTab);
 
   const handleBoxClick = (box) => {
     setSelectedBox(box);
@@ -57,14 +61,19 @@ const BuyYouTubeViews = () => {
 
   const handleBuyNow = () => {
     if (selectedBox) {
+      // Pass selectedBox values as part of the navigation to the component
       navigate("/get-start", {
-        state: { views: selectedBox.views_count, subtype: selectedBox.subtype, original_price: selectedBox.original_price},
+        state: {
+          views: selectedBox.views_count,
+          subtype: selectedBox.subtype,
+          original_price: selectedBox.original_price,
+          platform: currentTab, // currentTab holds the platform type, e.g., 'youtube', 'instagram', etc.
+        },
       });
     } else {
       alert("Please select a box before proceeding.");
     }
   };
-
   const handleNext = () => {
     if (currentIndex + itemsPerPage < filteredBoxes.length) {
       setCurrentIndex(currentIndex + itemsPerPage);
@@ -76,19 +85,22 @@ const BuyYouTubeViews = () => {
       setCurrentIndex(currentIndex - itemsPerPage);
     }
   };
-    // Filter boxes based on currentTab (either "youtube", "facebook", etc.) and currentSubscriptionType
-    const filteredBoxes = boxes.filter(
-      (box) => box.type === currentTab && box.subtype === "views" && box.subscription_type === currentSubscriptionType
-    );
+  // Filter boxes based on currentTab (either "youtube", "facebook", etc.) and currentSubscriptionType
+  const filteredBoxes = boxes.filter(
+    (box) =>
+      box.type === currentTab &&
+      box.subtype === "views" &&
+      box.subscription_type === currentSubscriptionType
+  );
 
   // Get unique subscription types
-  const uniqueSubscriptionTypes = [...new Set(
-    boxes
-      .filter((box) =>  box.subtype === "views") // Conditional filtering for "views"
-      .map((box) => box.subscription_type)
-  )];
-
-
+  const uniqueSubscriptionTypes = [
+    ...new Set(
+      boxes
+        .filter((box) => box.subtype === "views") // Conditional filtering for "views"
+        .map((box) => box.subscription_type)
+    ),
+  ];
 
   const currentBoxes = filteredBoxes.slice(
     currentIndex,
@@ -106,24 +118,28 @@ const BuyYouTubeViews = () => {
           Buy YouTube <br />
           Views <span className="label-red">Instantly</span>
         </h1>
+        <p>
+          E-Modulus is the safest way to buy YouTube Views with delivery in just
+          a few minutes. We offer multiple packages with real users for all
+          different needs - choose wisely!
+        </p>
       </div>
 
       <div className="section2">
         <div className="rectangle">
-        
-
           {/* Filter for Subscription Type */}
           <div className="subscription-filter">
             <ul className="tabs">
               {uniqueSubscriptionTypes.map((type) => (
                 <li
                   key={type}
-                  className={'tab currentSubscriptionType === type ? "active" : "" '}
+                  className={`tab ${
+                    currentSubscriptionType === type ? "active" : ""
+                  }`}
                   onClick={() => {
                     setCurrentSubscriptionType(type);
                     setCurrentIndex(0);
                     setSelectedBox(null);
-                    
                   }}
                 >
                   {type}
@@ -148,12 +164,13 @@ const BuyYouTubeViews = () => {
           </div>
 
           <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(2, 1fr)",
-              gap: "20px",
-              marginBottom: "20px",
-            }}
+            className="grid-container"
+            // style={{
+            //   display: "grid",
+            //   gridTemplateColumns: "repeat(2, 1fr)",
+            //   gap: "20px",
+            //   marginBottom: "20px",
+            // }}
           >
             {currentBoxes.map((box) => (
               <div
@@ -227,6 +244,9 @@ const BuyYouTubeViews = () => {
         </div>
       </div>
       <YouTubeCampaign />
+      <GuaranteeSection />
+      <Testimonials/>
+      <FaqPage />
     </div>
   );
 };

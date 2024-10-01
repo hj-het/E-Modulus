@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./../YouTube/Buyview.css"
+import "./../YouTube/Buyview.css";
 import $ from "jquery";
 import { GrCaretNext } from "react-icons/gr";
 import { GrCaretPrevious } from "react-icons/gr";
@@ -13,12 +13,13 @@ const BuyInstaLikes = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentTab, setCurrentTab] = useState("instagram");
-  const [currentSubscriptionType, setCurrentSubscriptionType] = useState("real-active"); 
+  const [currentSubscriptionType, setCurrentSubscriptionType] =
+    useState("real-active");
   const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(0);
   const itemsPerPage = 4;
 
-  console.log("boxes-->", boxes,loading,setCurrentTab);
+  console.log("boxes-->", boxes, loading, setCurrentTab);
 
   const handleBoxClick = (box) => {
     setSelectedBox(box);
@@ -58,7 +59,12 @@ const BuyInstaLikes = () => {
   const handleBuyNow = () => {
     if (selectedBox) {
       navigate("/get-start", {
-        state: { views: selectedBox.views_count, subtype: selectedBox.subtype, original_price: selectedBox.original_price},
+        state: {
+          views: selectedBox.views_count,
+          subtype: selectedBox.subtype,
+          original_price: selectedBox.original_price,
+          platform: currentTab, // currentTab holds the platform type, e.g., 'youtube', 'instagram', etc.
+        },
       });
     } else {
       alert("Please select a box before proceeding.");
@@ -91,14 +97,13 @@ const BuyInstaLikes = () => {
       box.type === currentTab &&
       box.subtype === "likes" &&
       box.subscription_type === currentSubscriptionType
-  )
+  );
 
   const currentBoxes = filteredBoxes.slice(
     currentIndex,
     currentIndex + itemsPerPage
   );
   // const capitalizedSubscriptionType = currentSubscriptionType.charAt(0).toUpperCase() + currentSubscriptionType.slice(1);
-
 
   if (error) {
     return <div>{error}</div>;
@@ -111,24 +116,29 @@ const BuyInstaLikes = () => {
           Buy Instagram <br />
           Likes <span className="label-red">Now</span>
         </h1>
+        <p>
+          Give wings to your YouTube videos with high quality YouTube likes that
+          no YouTube algorithm can suspect. Because, they are from real people!
+          Experience the doping effect of the right audience with a reasonable
+          price. with E-Modulus. Read what is written about us in the press.
+        </p>
       </div>
 
       <div className="section2">
         <div className="rectangle">
-        
-
           {/* Filter for Subscription Type */}
           <div className="subscription-filter">
             <ul className="tabs">
               {uniqueSubscriptionTypes.map((type) => (
                 <li
                   key={type}
-                  className={'tab currentSubscriptionType === type ? "active" : "" '}
+                  className={`tab ${
+                    currentSubscriptionType === type ? "active" : ""
+                  }`}
                   onClick={() => {
                     setCurrentSubscriptionType(type);
                     setCurrentIndex(0);
                     setSelectedBox(null);
-                    
                   }}
                 >
                   {type}
@@ -149,19 +159,17 @@ const BuyInstaLikes = () => {
                   views per day.
                 </span>
               </p>
-              
             )}
-                {/* <p>{capitalizedSubscriptionType}</p> */}
-
+            {/* <p>{capitalizedSubscriptionType}</p> */}
           </div>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(2, 1fr)",
-              gap: "20px",
-              marginBottom: "20px",
-            }}
+          <div className="grid-container"
+            // style={{
+            //   display: "grid",
+            //   gridTemplateColumns: "repeat(2, 1fr)",
+            //   gap: "20px",
+            //   marginBottom: "20px",
+            // }}
           >
             {currentBoxes.map((box) => (
               <div
@@ -196,14 +204,14 @@ const BuyInstaLikes = () => {
               <GrCaretNext />
             </button>
           </div>
-
           <div
-            className="button-container"
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              marginTop: "20px",
-            }}
+            className="grid-container"
+            // style={{
+            //   display: "grid",
+            //   gridTemplateColumns: "repeat(2, 1fr)",
+            //   gap: "20px",
+            //   marginBottom: "20px",
+            // }}
           >
             <button className="buy-now" onClick={handleBuyNow}>
               Buy Now

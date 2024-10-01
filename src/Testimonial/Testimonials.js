@@ -27,20 +27,28 @@ console.log("testimonials===>",testimonials)
     infinite: true,
     speed: 500,
     slidesToShow: 3,
-    slidesToScroll: 0.5, 
-    swipeToSlide: true, 
+    slidesToScroll: 1, 
+    swipeToSlide: true,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1024, // Tablet and smaller laptops
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 0.5,
+          slidesToScroll: 1,
           infinite: true,
           dots: true
         }
       },
       {
-        breakpoint: 600,
+        breakpoint: 770, // Tablets in portrait
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 480, // Mobile screens
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -49,7 +57,7 @@ console.log("testimonials===>",testimonials)
       }
     ]
   };
-
+  
   return (
     <div className="testimonial-container">
       <h2>Reviews</h2>

@@ -14,7 +14,7 @@ const BuyTwitterLikes = () => {
   const [error, setError] = useState(null);
   const [currentTab, setCurrentTab] = useState("x");
   const [currentSubscriptionType, setCurrentSubscriptionType] =
-    useState("regular");
+    useState("real-active");
   const [currentIndex, setCurrentIndex] = useState(0);
   const navigate = useNavigate();
   const itemsPerPage = 4;
@@ -63,6 +63,7 @@ const BuyTwitterLikes = () => {
           views: selectedBox.views_count,
           subtype: selectedBox.subtype,
           original_price: selectedBox.original_price,
+          platform: currentTab // currentTab holds the platform type, e.g., 'youtube', 'instagram', etc.
         },
       });
     } else {
@@ -147,7 +148,7 @@ const BuyTwitterLikes = () => {
           </div>
 
           <div className="grey-title">
-            {currentSubscriptionType === "regular" ? (
+            {currentSubscriptionType === "real-active" ? (
               <p>
                 <span>Limited-time discounts on YouTube views packages!</span>
               </p>
@@ -160,14 +161,13 @@ const BuyTwitterLikes = () => {
               </p>
             )}
           </div>
-
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(2, 1fr)",
-              gap: "20px",
-              marginBottom: "20px",
-            }}
+          <div className="grid-container"
+            // style={{
+            //   display: "grid",
+            //   gridTemplateColumns: "repeat(2, 1fr)",
+            //   gap: "20px",
+            //   marginBottom: "20px",
+            // }}
           >
             {currentBoxes.map((box) => (
               <div

@@ -6,6 +6,9 @@ import $ from "jquery";
 import { GrCaretNext } from "react-icons/gr";
 import { GrCaretPrevious } from "react-icons/gr";
 import YouTubeCampaign from "./YouTubeCampaign";
+import GuaranteeSection from "../../Gurrenty/GuaranteeSection";
+// import Testimonials from "../../Testimonial/Testimonials";
+import FaqPage from "../../FaqPage/QuestionPage";
 
 const BuyYouTubeSubscribers = () => {
   const [selectedBox, setSelectedBox] = useState(null);
@@ -64,6 +67,7 @@ const BuyYouTubeSubscribers = () => {
           views: selectedBox.views_count,
           subtype: selectedBox.subtype,
           original_price: selectedBox.original_price,
+          platform: currentTab, // currentTab holds the platform type, e.g., 'youtube', 'instagram', etc.
         },
       });
     } else {
@@ -116,6 +120,12 @@ const BuyYouTubeSubscribers = () => {
           Buy YouTube <br />
           Subscribers <span className="label-red">Instantly</span>
         </h1>
+        <p>
+          Smooth the path for your videos by buying YouTube subscribers from
+          E-Modulus. Affordable prices are here! You can choose one of the
+          packages to gain organic YouTube subscribers. Boost your YouTube
+          channel immediately with E-Modulus!
+        </p>
       </div>
 
       <div className="section2">
@@ -126,9 +136,9 @@ const BuyYouTubeSubscribers = () => {
               {uniqueSubscriptionTypes.map((type) => (
                 <li
                   key={type}
-                  className={
-                    'tab currentSubscriptionType === type ? "active" : "" '
-                  }
+                  className={`tab ${
+                    currentSubscriptionType === type ? "active" : ""
+                  }`}
                   onClick={() => {
                     setCurrentSubscriptionType(type);
                     setCurrentIndex(0);
@@ -144,30 +154,33 @@ const BuyYouTubeSubscribers = () => {
           <div className="grey-title">
             {currentSubscriptionType === "Regular-Subscribers" ? (
               <p>
-                <span>Big discounts on all subscribers packages! Daily speed of subscribers service is 200 in a day.</span>
+                <span>
+                  Big discounts on all subscribers packages! Daily speed of
+                  subscribers service is 200 in a day.
+                </span>
               </p>
-            ) : currentSubscriptionType === "Influencer+" ? ( 
+            ) : currentSubscriptionType === "Influencer+" ? (
               <p>
                 <span>
-                Every hour, receive one subscriber. It’s perfect for small channels to grow in a natural pattern!
+                  Every hour, receive one subscriber. It’s perfect for small
+                  channels to grow in a natural pattern!
                 </span>
               </p>
             ) : (
               <p>
-                <span>
-                  ''
-                </span>
+                <span>Every hour, receive one subscriber.</span>
               </p>
             )}
           </div>
 
           <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(2, 1fr)",
-              gap: "20px",
-              marginBottom: "20px",
-            }}
+            className="grid-container"
+            // style={{
+            //   display: "grid",
+            //   gridTemplateColumns: "repeat(2, 1fr)",
+            //   gap: "20px",
+            //   marginBottom: "20px",
+            // }}
           >
             {currentBoxes.map((box) => (
               <div
@@ -241,6 +254,9 @@ const BuyYouTubeSubscribers = () => {
         </div>
       </div>
       <YouTubeCampaign />
+      <GuaranteeSection />
+      {/* <Testimonials /> */}
+      <FaqPage />
     </div>
   );
 };

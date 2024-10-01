@@ -31,7 +31,7 @@
 }
 
 .social-icons a:hover {
-    background-color: #cc0000; 
+    background-color: #261e1e; 
 }
 
 .fa {
@@ -60,6 +60,7 @@
     position: relative;
     top: 160px;
   }
+  
   
   
   @keyframes arrowDownMove {
@@ -113,5 +114,13 @@
   
     .arrow-img {
       width: 250%; 
+    }
+  }
+  @media (max-width:480px) {
+    .social-icons a{
+      padding: 10px;
+    }
+    .banner p {
+      font-size: 26px;
     }
   }

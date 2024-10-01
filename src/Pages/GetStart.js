@@ -1,35 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import { Container, TextField, Button, Paper, Typography } from '@mui/material';
-import { styled } from '@mui/system';
-import { useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Container, TextField, Button, Paper, Typography } from "@mui/material";
+import { styled } from "@mui/system";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { ToastContainer, toast } from 'react-toastify'; 
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "../Style/getstart.css";
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(10),
-  flexDirection: 'column',
-  boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
-  borderRadius: '20px',
+  flexDirection: "column",
+  boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+  borderRadius: "20px",
 }));
 
 const GetStart = () => {
   const location = useLocation();
-  const initialViews = location.state?.views || '';
-  const initialSubtype = location.state?.subtype || '';
-  const initialPrice = location.state?.original_price || '';
+  const navigate = useNavigate();
+
+  const initialViews = location.state?.views || "";
+  const initialSubtype = location.state?.subtype || "";
+  const initialPrice = location.state?.original_price || "";
+  const platform = location.state?.platform || "youtube"; 
+
   const [formData, setFormData] = useState({
-    youtubeUrl: '',
-    email: '',
+    platformInput: "",
+    email: "",
     views: initialViews,
     subtype: initialSubtype,
-    original_price: initialPrice
+    original_price: initialPrice,
   });
 
   useEffect(() => {
     const script = document.createElement("script");
-    // script.src = "https://checkout.razorpay.com/v1/checkout.js";
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
     document.body.appendChild(script);
     return () => {
       document.body.removeChild(script);
@@ -44,28 +48,27 @@ const GetStart = () => {
     });
   };
 
-
   const validateForm = () => {
-    const { youtubeUrl, email, views } = formData;
+    const { platformInput, email, views } = formData;
 
-
-    const urlPattern = /^(https?:\/\/)?(www\.youtube\.com|youtu\.?be)\/.+$/;
-
-    if (!urlPattern.test(youtubeUrl)) {
-      toast.error('Please enter a valid YouTube URL.');
-      return false;
+    // URL validation only for YouTube
+    if (platform === "youtube") {
+      const urlPattern = /^(https?:\/\/)?(www\.youtube\.com|youtu\.?be)\/.+$/;
+      if (!urlPattern.test(platformInput)) {
+        toast.error("Please enter a valid YouTube URL.");
+        return false;
+      }
     }
 
     // Validate email format
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(email)) {
-      toast.error('Please enter a valid email address.');
+      toast.error("Please enter a valid email address.");
       return false;
     }
 
-    
     if (!views || isNaN(views) || Number(views) <= 0) {
-      toast.error('Please enter a valid number of views.');
+      toast.error("Please enter a valid number of views.");
       return false;
     }
 
@@ -74,25 +77,28 @@ const GetStart = () => {
 
   const handlePayment = (amount) => {
     const options = {
-      key: "rzp_test_VQLOJcsFJtVFzO", 
-      amount: amount,
+      key: "rzp_test_VQLOJcsFJtVFzO", // Use your Razorpay Test Key
+      amount: amount * 100,
       currency: "INR",
       name: "Modulus Fintech",
       description: "Test Transaction",
-      image: "https://yourlogo.com/logo.png",
+      image: "/mainlogo.png",
       handler: function (response) {
-        toast.success(`Payment Successful! Payment ID: ${response.razorpay_payment_id}`); // Show success toast
+        toast.success(
+          `Payment Successful! Payment ID: ${response.razorpay_payment_id}`
+        );
+        navigate("/thankyou");
       },
       prefill: {
         name: "het chunara",
         email: formData.email,
       },
       notes: {
-        address: "Some Address"
+        address: "Some Address",
       },
       theme: {
-        color: "#3399cc"
-      }
+        color: "#3399cc",
+      },
     };
 
     const rzp = new window.Razorpay(options);
@@ -102,38 +108,37 @@ const GetStart = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate form data before submitting
     if (!validateForm()) {
       return;
     }
-console.log("formData.views",formData)
+
     const payload = {
       views: formData.views,
-      url: formData.youtubeUrl,
+      url: formData.platformInput,
     };
 
     try {
-      const response = await axios.post('/v1/orderDetails', JSON.stringify(payload), {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      console.log("Response from API:", response.data);
+      const response = await axios.post(
+        "/v1/orderDetails",
+        JSON.stringify(payload),
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       handlePayment(response.data.amount);
-      toast.success('Order details submitted successfully!'); // Show success toast
 
       setFormData({
-        youtubeUrl: '',
-        email: '',
-        views: '',
+        platformInput: "",
+        email: "",
+        views: "",
       });
     } catch (error) {
-      console.error("Error posting data:", error.response?.data || error.message);
-      
-      const message = error.response?.data?.message || 'An unexpected error occurred.';
-      toast.error(`Error: ${message}`); // Show error toast
+      const message =
+        error.response?.data?.message || "An unexpected error occurred.";
+      toast.error(`Error: ${message}`);
     }
   };
 
@@ -145,22 +150,41 @@ console.log("formData.views",formData)
         </Typography>
         <form onSubmit={handleSubmit}>
           <TextField
-            label="YouTube Video URL"
+            label={
+              platform === "youtube"
+                ? "YouTube Video URL"
+                : platform === "instagram"
+                ? "Instagram URL"
+                : platform === "facebook"
+                ? "Facebook Page URL"
+                : platform === "twitter"
+                ? "Twitter URL"
+                : platform === "website"
+                ? "Website URL"
+                : platform === "google-business"
+                ? "Google-Business URL"
+                : platform === "telegram"
+                ? "Telegram URL"
+                : platform === "linkedin"
+                ? "Linkedin URL"
+                : "Give Plateform Link"
+            }
             variant="outlined"
             margin="normal"
             fullWidth
-            name="youtubeUrl"
-            value={formData.youtubeUrl}
+            name="platformInput"
+            value={formData.platformInput}
             onChange={handleChange}
             className="text-field"
             InputProps={{
               sx: {
-                borderRadius: '30px',
-                '&:hover .MuiOutlinedInput-notchedOutline': {
-                  borderColor: 'darkred',
+                borderRadius: "30px",
+                "&:hover .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "darkred",
                 },
               },
-            }} />
+            }}
+          />
           <TextField
             label="Email Address"
             variant="outlined"
@@ -172,12 +196,13 @@ console.log("formData.views",formData)
             className="text-field"
             InputProps={{
               sx: {
-                borderRadius: '30px',
-                '&:hover .MuiOutlinedInput-notchedOutline': {
-                  borderColor: 'darkred',
+                borderRadius: "30px",
+                "&:hover .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "darkred",
                 },
               },
-            }} />
+            }}
+          />
           <TextField
             label="Views"
             variant="outlined"
@@ -187,26 +212,27 @@ console.log("formData.views",formData)
             value={`${formData.views} ${formData.subtype} $ ${formData.original_price}`}
             onChange={handleChange}
             className="text-field"
-            disabled 
+            disabled
             InputProps={{
               sx: {
-                borderRadius: '30px',
-                '&:hover .MuiOutlinedInput-notchedOutline': {
-                  borderColor: 'darkred',
+                borderRadius: "30px",
+                "&:hover .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "darkred",
                 },
               },
-            }} />
+            }}
+          />
           <Button
             type="submit"
             variant="contained"
             className="submit-button"
-            sx={{ backgroundColor: '#0b0c0c', color: 'white', mt: 4 }}
+            sx={{ backgroundColor: "#0b0c0c", color: "white", mt: 4 }}
           >
             Continue
           </Button>
         </form>
       </StyledPaper>
-      <ToastContainer /> {/* Add ToastContainer to render the toasts */}
+      <ToastContainer />
     </Container>
   );
 };

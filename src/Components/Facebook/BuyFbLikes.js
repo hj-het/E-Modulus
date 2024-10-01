@@ -63,6 +63,7 @@ const BuyFbLikes = () => {
           views: selectedBox.views_count,
           subtype: selectedBox.subtype,
           original_price: selectedBox.original_price,
+          platform: currentTab // currentTab holds the platform type, e.g., 'youtube', 'instagram', etc.
         },
       });
     } else {
@@ -130,9 +131,9 @@ const BuyFbLikes = () => {
               {uniqueSubscriptionTypes.map((type) => (
                 <li
                   key={type}
-                  className={
-                    'tab currentSubscriptionType === type ? "active" : "" '
-                  }
+                  className={`tab ${
+                    currentSubscriptionType === type ? "active" : ""
+                  }`}
                   onClick={() => {
                     setCurrentSubscriptionType(type);
                     setCurrentIndex(0);
@@ -160,13 +161,13 @@ const BuyFbLikes = () => {
             )}
           </div>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(2, 1fr)",
-              gap: "20px",
-              marginBottom: "20px",
-            }}
+          <div className="grid-container"
+            // style={{
+            //   display: "grid",
+            //   gridTemplateColumns: "repeat(2, 1fr)",
+            //   gap: "20px",
+            //   marginBottom: "20px",
+            // }}
           >
             {currentBoxes.map((box) => (
               <div
@@ -183,7 +184,7 @@ const BuyFbLikes = () => {
                 <div className="right-col">
                   <div className="price">${box.original_price.toFixed(2)}</div>
                   {box.discount_price > 0 && (
-                    <span className="save">Discounted</span>
+                    <span className="save">save {box.discount_price}%</span>
                   )}
                 </div>
               </div>

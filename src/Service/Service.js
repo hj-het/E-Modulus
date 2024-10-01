@@ -16,6 +16,7 @@ const Services = () => {
           price="$4.80"
           rating={5}
           btnText="Buy YouTube views"
+          link="/buy-youtube-views"
         />
         <ServiceCard
           icon="👍"
@@ -24,6 +25,7 @@ const Services = () => {
           price="$3.50"
           rating={2}
           btnText="Buy likes"
+          link="/buy-youtube-likes"
         />
         <ServiceCard
           icon="👥"
@@ -32,6 +34,7 @@ const Services = () => {
           price="$3.90"
           rating={5}
           btnText="Buy subscribers"
+          link="/buy-youtube-subscribers"
         />
       </div>
     </div>
