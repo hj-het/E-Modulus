@@ -28,9 +28,12 @@ const BuyFbLikes = () => {
   useEffect(() => {
     const fetchBoxes = async () => {
       try {
-        const response = await axios.post("/v1/plans", {
-          type: "facebook",
-        });
+        const response = await axios.post(
+          "https://www.thebrainmoney.com/v1/plans",
+          {
+            type: "facebook",
+          }
+        );
         console.log("API Response:", response);
 
         setBoxes(response.data.data);
@@ -63,7 +66,7 @@ const BuyFbLikes = () => {
           views: selectedBox.views_count,
           subtype: selectedBox.subtype,
           original_price: selectedBox.original_price,
-          platform: currentTab // currentTab holds the platform type, e.g., 'youtube', 'instagram', etc.
+          platform: currentTab, // currentTab holds the platform type, e.g., 'youtube', 'instagram', etc.
         },
       });
     } else {
@@ -97,7 +100,7 @@ const BuyFbLikes = () => {
       box.type === currentTab &&
       box.subtype === "likes" &&
       box.subscription_type === currentSubscriptionType
-  )
+  );
 
   const currentBoxes = filteredBoxes.slice(
     currentIndex,
@@ -161,7 +164,8 @@ const BuyFbLikes = () => {
             )}
           </div>
 
-          <div className="grid-container"
+          <div
+            className="grid-container"
             // style={{
             //   display: "grid",
             //   gridTemplateColumns: "repeat(2, 1fr)",
@@ -182,9 +186,26 @@ const BuyFbLikes = () => {
                   <span className="views">{box.subtype}</span>
                 </div>
                 <div className="right-col">
-                  <div className="price">${box.original_price.toFixed(2)}</div>
+                  <div className="price-section">
+                    {box.original_price > 0 && (
+                      <div className="original-price">
+                        <del>${box.original_price.toFixed(2)}</del>
+                      </div>
+                    )}
+                    <div className="discounted-price">
+                      ${box.discount_price.toFixed(2)}
+                    </div>
+                  </div>
                   {box.discount_price > 0 && (
-                    <span className="save">save {box.discount_price}%</span>
+                    <span className="save">
+                      Save{" "}
+                      {Math.round(
+                        ((box.original_price - box.discount_price) /
+                          box.original_price) *
+                          100
+                      )}
+                      %
+                    </span>
                   )}
                 </div>
               </div>

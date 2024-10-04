@@ -11,7 +11,7 @@ const NotFound = () => {
         <a href="/" className="home-btn">Go Back Home</a>
       </div>
       <div className="animation-box">
-        {/* <img src="./404-status.png" alt="404 Error Image" /> */}
+        {/* <img src="./404-status.webp" alt="404 Error Image" /> */}
       </div>
     </div>
   );

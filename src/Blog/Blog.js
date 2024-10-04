@@ -12,7 +12,7 @@ const Blog = () => {
     // Fetching blogs from the API
     const fetchBlogs = async () => {
       try {
-        const response = await axios.get('/v1/getBlogs');
+        const response = await axios.get('https://www.thebrainmoney.com/v1/getBlogs');
         setBlogs(response.data.data); 
         setLoading(false);
       } catch (error) {

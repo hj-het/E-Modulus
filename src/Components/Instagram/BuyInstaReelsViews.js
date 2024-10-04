@@ -14,7 +14,7 @@ const BuyInstaReelsViews = () => {
   const [error, setError] = useState(null);
   const [currentTab, setCurrentTab] = useState("instagram");
   const [currentSubscriptionType, setCurrentSubscriptionType] =
-    useState("real-active");
+    useState("active-views");
   const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(0);
   const itemsPerPage = 4;
@@ -28,7 +28,7 @@ const BuyInstaReelsViews = () => {
   useEffect(() => {
     const fetchBoxes = async () => {
       try {
-        const response = await axios.post("/v1/plans", {
+        const response = await axios.post("https://www.thebrainmoney.com/v1/plans", {
           type: "instagram",
         });
         console.log("API Response:", response);
@@ -149,7 +149,7 @@ const BuyInstaReelsViews = () => {
           </div>
 
           <div className="grey-title">
-            {currentSubscriptionType === "real-active" ? (
+            {currentSubscriptionType === "active-views" ? (
               <p>
                 <span>Limited-time discounts on YouTube views packages!</span>
               </p>
@@ -184,10 +184,27 @@ const BuyInstaReelsViews = () => {
                   <span className="number">{box.views_count}</span>
                   <span className="views">{box.subtype}</span>
                 </div>
-                <div className="right-col">
-                  <div className="price">${box.original_price.toFixed(2)}</div>
+              <div className="right-col">
+                  <div className="price-section">
+                    {box.original_price > 0 && (
+                      <div className="original-price">
+                        <del>${box.original_price.toFixed(2)}</del>
+                      </div>
+                    )}
+                    <div className="discounted-price">
+                      ${box.discount_price.toFixed(2)}
+                    </div>
+                  </div>
                   {box.discount_price > 0 && (
-                    <span className="save">Discounted</span>
+                    <span className="save">
+                      Save{" "}
+                      {Math.round(
+                        ((box.original_price - box.discount_price) /
+                          box.original_price) *
+                          100
+                      )}
+                      %
+                    </span>
                   )}
                 </div>
               </div>

@@ -30,7 +30,7 @@ const Home = () => {
           </p>
         </div>
         <div className="mainimage">
-          <img src="Home-page_1.png" alt=""></img>
+          <img src="./images/Home-page_1.webp" alt=""></img>
         </div>
       </div>
       <Services />

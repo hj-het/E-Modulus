@@ -164,19 +164,19 @@
 @media (max-width: 426px) {
   .review-container {
       padding: 20px;
-      width: 76%;
+      /* width: 76%; */
   }
 
   .reviewforminput,
   .stars {
       font-size: 18px; /* Smaller font on very small screens */
-      width: 86%;
+      width: 82%;
   }
 
   .textareareview {
       font-size: 18px;
       padding: 10px;
-      width: 86%;
+      width: 284px;
   }
 
   .buttontext {

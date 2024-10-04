@@ -45,13 +45,13 @@ const FooterBanner = () => {
           >
             <i className="fab fa-facebook"></i>
           </a>
-          <a
+          {/* <a
             href="https://in.pinterest.com/emodulus/"
             target="_blank"
             rel="noopener noreferrer"
           >
             <i className="fab fa-pinterest"></i>
-          </a>
+          </a> */}
         </div>
       </div>
     </div>

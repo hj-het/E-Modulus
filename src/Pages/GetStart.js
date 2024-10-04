@@ -18,9 +18,10 @@ const GetStart = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  // Set initial values from location.state or fallback to empty string/0
   const initialViews = location.state?.views || "";
   const initialSubtype = location.state?.subtype || "";
-  const initialPrice = location.state?.original_price || "";
+  const initialPrice = location.state?.original_price || 0; // Fallback to 0 if undefined
   const platform = location.state?.platform || "youtube"; 
 
   const [formData, setFormData] = useState({
@@ -31,6 +32,7 @@ const GetStart = () => {
     original_price: initialPrice,
   });
 
+  // Load Razorpay script once when component mounts
   useEffect(() => {
     const script = document.createElement("script");
     script.src = "https://checkout.razorpay.com/v1/checkout.js";
@@ -40,6 +42,7 @@ const GetStart = () => {
     };
   }, []);
 
+  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -48,6 +51,7 @@ const GetStart = () => {
     });
   };
 
+  // Validate form inputs
   const validateForm = () => {
     const { platformInput, email, views } = formData;
 
@@ -75,14 +79,17 @@ const GetStart = () => {
     return true;
   };
 
-  const handlePayment = (amount) => {
+  // Razorpay payment handler
+  const handlePayment = (initialPrice) => {
+    const amountInPaise = initialPrice * 100; 
+     console.log("amountInPaise-->",amountInPaise)
     const options = {
-      key: "rzp_test_VQLOJcsFJtVFzO", // Use your Razorpay Test Key
-      amount: amount * 100,
+      key: "rzp_test_VQLOJcsFJtVFzO", 
+      amount: amountInPaise, 
       currency: "INR",
       name: "Modulus Fintech",
       description: "Test Transaction",
-      image: "/mainlogo.png",
+      image: "./images/mainlogo.webp",
       handler: function (response) {
         toast.success(
           `Payment Successful! Payment ID: ${response.razorpay_payment_id}`
@@ -90,7 +97,7 @@ const GetStart = () => {
         navigate("/thankyou");
       },
       prefill: {
-        name: "het chunara",
+        name: "E-Modulus",
         email: formData.email,
       },
       notes: {
@@ -105,6 +112,7 @@ const GetStart = () => {
     rzp.open();
   };
 
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -115,6 +123,7 @@ const GetStart = () => {
     const payload = {
       views: formData.views,
       url: formData.platformInput,
+      original_price: formData.original_price, // Ensure it's passed here
     };
 
     try {
@@ -127,8 +136,16 @@ const GetStart = () => {
           },
         }
       );
+      console.log(response)
+      console.log("original_price:", formData.original_price);
 
-      handlePayment(response.data.amount);
+      // Pass the original_price to handlePayment function
+      if (formData.original_price) {
+        const amountInPaise = initialPrice * 100; 
+        handlePayment(amountInPaise); // Razorpay expects amount in paise
+      } else {
+        toast.error("Original price is not defined.");
+      }
 
       setFormData({
         platformInput: "",
@@ -167,7 +184,7 @@ const GetStart = () => {
                 ? "Telegram URL"
                 : platform === "linkedin"
                 ? "Linkedin URL"
-                : "Give Plateform Link"
+                : "Platform URL"
             }
             variant="outlined"
             margin="normal"

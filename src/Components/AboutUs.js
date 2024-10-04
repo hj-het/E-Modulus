@@ -22,7 +22,7 @@ const AboutUs = () => {
           <p>Years Of Experience</p>
         </div> */}
         <div className="image-wrapper">
-          <img src="about-image2.png" alt="Agency Team" className="main-image" />
+          <img src="./images/about-image2.webp" alt="Agency Team" className="main-image" />
           
         </div>
       </div>
@@ -59,10 +59,10 @@ const AboutUs = () => {
         <div className="trusted">
           <p>Trusted By 500+ Companies Around The World</p>
           <div className="logos">
-            <img src="icon-company-logo-2.svg" alt="Logo 1" />
-            <img src="icon-company-logo-2.svg" alt="Logo 2" />
-            <img src="icon-company-logo-2.svg" alt="Logo 3" />
-            <img src="icon-company-logo-2.svg" alt="Logo 4" />
+            <img src="./images/icon-company-logo-2.webp" alt="Logo 1" />
+            <img src="./images/icon-company-logo-2.webp" alt="Logo 2" />
+            <img src="./images/icon-company-logo-2.webp" alt="Logo 3" />
+            <img src="./images/icon-company-logo-2.webp" alt="Logo 4" />
           </div>
         </div>
       </div>

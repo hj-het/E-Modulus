@@ -33,7 +33,7 @@
 //       currency: 'INR',
 //       name: 'Your Company Name',
 //       description: 'Test Transaction',
-//       image: 'https://your-logo-url.com/logo.png',
+//       image: 'https://your-logo-url.com/logo.webp',
 //       handler: function (response) {
 //         alert(`Payment Successful! Payment ID: ${response.razorpay_payment_id}`);
 //         setPaymentId(response.razorpay_payment_id);

@@ -34,19 +34,19 @@ const Footer = () => {
       </p>
       <div className="payment_icon">
         <div className="pay_icon_left">
-          <img src='./dmca_premi_badge_4.png' alt="DMCA badge" />
+          <img src='../images/dmca_premi_badge_4.webp' alt="DMCA badge" />
         </div>
         <div className="pay_icon_right">
-          <img src= "./visa.png" alt="Visa" />
-          <img src='./master.png' alt="Mastercard" />
-          <img src="./american.png" alt="american"/>
+          <img src= "../images/visa.webp" alt="Visa" />
+          <img src='../images/master.webp' alt="Mastercard" />
+          <img src="../images/american.webp" alt="american"/>
         </div>
       </div>
       <div className="site-info">
         <p>
           Copyright 2024 E-MODULUS | Designed and developed by{" "}
           <a href="https://hjsysweb.com/">
-            <img src='./icon.png' alt="hjlogo" style={{ height: "20px" }} />
+            <img src='../images/icon.webp' alt="hjlogo" style={{ height: "20px" }} />
           </a>
         </p>
       </div>

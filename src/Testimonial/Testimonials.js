@@ -11,7 +11,7 @@ console.log("testimonials===>",testimonials)
   useEffect(() => {
     const fetchTestimonials = async () => {
       try {
-        const response = await axios.get('/v1/getReviews');
+        const response = await axios.get('https://www.thebrainmoney.com/v1/getReviews');
         console.log("response.data",response.data)
         setTestimonials(response.data.data); 
       } catch (error) {
@@ -29,9 +29,11 @@ console.log("testimonials===>",testimonials)
     slidesToShow: 3,
     slidesToScroll: 1, 
     swipeToSlide: true,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
     responsive: [
       {
-        breakpoint: 1024, // Tablet and smaller laptops
+        breakpoint: 1025, // Tablet and smaller laptops
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
@@ -68,7 +70,7 @@ console.log("testimonials===>",testimonials)
               <div className="quote-icon">“</div>
               <p className="testimonial-text">{testimonial.review}</p>
               <div className="testimonial-author">
-                <img src={testimonial.profile_photo || './user.png'} alt={testimonial.name} className="testimonial-image" />
+                <img src={testimonial.profile_photo || './images/user.webp'} alt={testimonial.name} className="testimonial-image" />
                 <div>
                   <p className="author-name">{testimonial.name}</p>
                   <p className="author-followers">{testimonial.followers} followers</p>
@@ -83,5 +85,42 @@ console.log("testimonials===>",testimonials)
     </div>
   );
 };
+// Custom Next Arrow
+function SampleNextArrow(props) {
+  const {  style, onClick } = props;
+  return (
+    <div
+    // className={`next-arrow`}
+    style={{ 
+      ...style, 
+      display: "block", 
+      borderRadius: "50%", 
+      position: "absolute", 
+      right: "0", 
+      top: "50%" 
+    }}
+      onClick={onClick}
+    />
+  );
+}
 
+// Custom Prev Arrow
+function SamplePrevArrow(props) {
+  const {  style, onClick } = props;
+  return (
+    <div
+    className={`prev-arrow`}
+    style={{ 
+      ...style, 
+      display: "block", 
+      borderRadius: "50%", 
+      position: "absolute", 
+      left: "0", 
+      top: "50%", 
+      zIndex: 99 
+    }}
+      onClick={onClick}
+    />
+  );
+}
 export default Testimonials;

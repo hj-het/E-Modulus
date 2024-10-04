@@ -11,7 +11,7 @@ const FaqPage = () => {
   useEffect(() => {
     const fetchFaqs = async () => {
       try {
-        const response = await axios.get("/v1/getFaqs");
+        const response = await axios.get("https://www.thebrainmoney.com/v1/getFaqs");
         const faqItems = response.data.data.map((faq) => ({
           title: faq.question,
           content: faq.answer.replace(/<br\s*\/?>/gi, "\n"), 

@@ -13,7 +13,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap; 
+  /* flex-wrap: wrap;  */
 }
 
 .logo img {
@@ -79,6 +79,7 @@ header {
   left: 0;
   border-radius: 5px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 999;
 }
 
 .language:hover .language_list {
@@ -87,6 +88,7 @@ header {
 
 .language_list li {
   padding: 5px 10px;
+  z-index: 1;
 }
 
 .language_list li:hover {
@@ -104,6 +106,8 @@ header {
   .container-header {
     flex-direction: row;
     align-items: center;
+    display: flex;
+    /* flex-wrap: nowrap; */
   }
 
   .logo {
@@ -146,6 +150,9 @@ header {
   .language {
     display: none;
   }
+  .left_nav ul li a{
+    font-size: 15px;
+  }
 }
 
 
@@ -166,5 +173,26 @@ header {
 
   .logo img {
     max-height: 40px; 
+  }
+  .hamburger{
+    position: absolute;
+    right: 20px;
+  }
+  .menu {
+    flex-direction: column; 
+    gap: 10px;
+    /* display: none; */
+    width: 100%; 
+    background-color: rgb(255, 246, 246);
+    position: relative;
+    /* top: 60px; */
+    right: 0;
+    padding: 20px;
+  }
+  .left_nav {
+    position: absolute;
+    top: 5%;
+    right: 47px;
+    z-index: 99;
   }
 }

@@ -28,7 +28,7 @@ const BuyFbViews = () => {
   useEffect(() => {
     const fetchBoxes = async () => {
       try {
-        const response = await axios.post("/v1/plans", {
+        const response = await axios.post("https://www.thebrainmoney.com/v1/plans", {
           type: "facebook",
         });
         console.log("API Response:", response);
@@ -181,10 +181,27 @@ const BuyFbViews = () => {
                   <span className="number">{box.views_count}</span>
                   <span className="views">{box.subtype}</span>
                 </div>
-                <div className="right-col">
-                  <div className="price">${box.original_price.toFixed(2)}</div>
+              <div className="right-col">
+                  <div className="price-section">
+                    {box.original_price > 0 && (
+                      <div className="original-price">
+                        <del>${box.original_price.toFixed(2)}</del>
+                      </div>
+                    )}
+                    <div className="discounted-price">
+                      ${box.discount_price.toFixed(2)}
+                    </div>
+                  </div>
                   {box.discount_price > 0 && (
-                    <span className="save">Discounted</span>
+                    <span className="save">
+                      Save{" "}
+                      {Math.round(
+                        ((box.original_price - box.discount_price) /
+                          box.original_price) *
+                          100
+                      )}
+                      %
+                    </span>
                   )}
                 </div>
               </div>

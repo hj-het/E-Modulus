@@ -23,7 +23,7 @@ const Services = () => {
           title="YouTube Likes"
           description="When YouTube visitors see that your videos have a lot of likes, they will be more likely to watch them. Likes will help you grow your channel quicker."
           price="$3.50"
-          rating={2}
+          rating={5}
           btnText="Buy likes"
           link="/buy-youtube-likes"
         />

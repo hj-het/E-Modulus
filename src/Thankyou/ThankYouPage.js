@@ -27,7 +27,7 @@ const ThankYouPage = () => {
         }}
       >
         <img
-          src="/paymentsucces.png" 
+          src="/paymentsucces.webp" 
           alt="Success"
           style={{ marginBottom: '20px' }}
         />

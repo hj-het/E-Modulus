@@ -70,7 +70,7 @@
   justify-content: space-around;
 }
 
-.price {
+.priceservice {
   color: #e3342f;
   font-weight: bold;
 }
@@ -83,7 +83,7 @@
 /* Media Queries for responsiveness */
 @media (max-width: 768px) {
   .service-card {
-    width: 100%;
+    flex: 1 1 calc(20% - 32px);
   }
 }
 
@@ -99,5 +99,14 @@
     min-width: 300px;
     justify-content: center;
     align-items: center;
+  }
+  .serviceheading{
+    font-size: 15px;
+  }
+  .price-and-rating{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
   }
 }

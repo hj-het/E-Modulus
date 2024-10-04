@@ -14,7 +14,7 @@ const Header = () => {
     <header className="bg-blue-600 p-4 text-white">
       <nav className="container-header mx-auto flex justify-between items-center">
         <a className="main_logo" href="/">
-          <img src="./mainlogo.png" alt="Logo" />
+          <img src="./images/mainlogo.webp" alt="Logo" />
         </a>
 
         {/* Hamburger menu for mobile */}
@@ -26,15 +26,15 @@ const Header = () => {
         <div className={`left_nav ${isMenuOpen ? 'active' : ''}`}>
           <ul className={`menu ${isMenuOpen ? 'active' : ''}`}>
             <li><a href="/">Home</a></li>
-            <li><a href="/">Plan</a></li>
             <li><a href="/about-us">About US</a></li>
             <li><a href="/contact-us">Contact US</a></li>
+            <li><a href="/ordertrack">Order Track</a></li>
             <li><a href="/tools">Tools</a></li>
           </ul>
 
           {/* Language dropdown */}
           <div className="language">
-            <p>$</p>
+            <p>USD</p>
             <IoMdArrowDropdown />
             <ul className="language_list">
               <li>USD</li>

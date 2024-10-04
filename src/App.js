@@ -38,6 +38,7 @@ import BlogDetail from "./Blog/BlogDetail";
 import BuyLinkdnFollers from "./Components/LinkedIn/BuyLinkdnFollwers";
 import FooterBanner from "./FooterBanner/FooterBanner";
 import ThankYouPage from "./Thankyou/ThankYouPage";
+import OrderTrack from "./Track/OrderTrack";
 
 const App = () => {
   return (
@@ -55,8 +56,9 @@ const App = () => {
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:id" element={<BlogDetail />} />
         <Route path="*" element={<NotFound />} />
-     
-
+        <Route path="/ordertrack" element={<OrderTrack />} />
+       
+ 
         {/* youtube/////// */}
         <Route path="/get-start" element={<GetStart />} />
         <Route path="/buy-youtube-views" element={<BuyYouTubeViews />} />
@@ -73,23 +75,23 @@ const App = () => {
         <Route path="/buy-youtube-watchhours" element={<BuyYtWatchHours />} />
 
         {/* Instagram//// */}
-        <Route path="/buy-insta-views" element={<BuyInstaViews />} />
-        <Route path="/buy-insta-reelviews" element={<BuyInstaReelsViews />} />
-        <Route path="/buy-insta-likes" element={<BuyInstaLikes />} />
-        <Route path="/buy-insta-followers" element={<BuyInstaFollowers />} />
-        <Route path="/buy-insta-autolikes" element={<BuyInstaAutoLikes />} />
+        <Route path="/buy-instagram-views" element={<BuyInstaViews />} />
+        <Route path="/buy-instagram-reelviews" element={<BuyInstaReelsViews />} />
+        <Route path="/buy-instagram-likes" element={<BuyInstaLikes />} />
+        <Route path="/buy-instagram-followers" element={<BuyInstaFollowers />} />
+        <Route path="/buy-instagram-autolikes" element={<BuyInstaAutoLikes />} />
 
         {/* Facebook//// */}
-        <Route path="/buy-fb-followers" element={<BuyFbFollowers />} />
-        <Route path="/buy-fb-likes" element={<BuyFbLikes />} />
-        <Route path="/buy-fb-views" element={<BuyFbViews />} />
+        <Route path="/buy-facebook-followers" element={<BuyFbFollowers />} />
+        <Route path="/buy-facebook-likes" element={<BuyFbLikes />} />
+        <Route path="/buy-facebook-views" element={<BuyFbViews />} />
 
         {/* Twitter//// */}
         <Route path="/buy-twitter-followers" element={<BuyTwitterFollwers />} />
         <Route path="/buy-twitter-likes" element={<BuyTwitterLikes />} />
 
        {/* website//// */}
-       <Route path="/buy-wb-signup" element={<BuyWebsiteSignUps />} />
+       <Route path="/buy-website-signup" element={<BuyWebsiteSignUps />} />
      
        {/* Google Reviews/// */}
        <Route path="/buy-google-review" element={<BuyGooglereviews />} />
@@ -98,7 +100,7 @@ const App = () => {
        <Route path="/buy-telegram-mmb" element={<BuyTelegramMember />} />
 
        {/* LinkedIn//// */}
-       <Route path="/buy-linkdn-followers" element={<BuyLinkdnFollers />} />
+       <Route path="/buy-linkedin-followers" element={<BuyLinkdnFollers />} />
        <Route path="/thankyou" element={<ThankYouPage />} />
 
 

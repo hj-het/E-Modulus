@@ -5,7 +5,7 @@ const BuyYouTubeViews = () => {
   useEffect(() => {
     const fetchBoxes = async () => {
       try {
-        const response = await axios.get("/v1/plans"); // Your API endpoint
+        const response = await axios.get("https://www.thebrainmoney.com/v1/plans"); // Your API endpoint
 
         // Log the full API response
         console.log("API Response:", response);

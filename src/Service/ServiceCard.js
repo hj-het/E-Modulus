@@ -15,13 +15,13 @@ const ServiceCard = ({ icon, title, description, price, rating, btnText,link }) 
         <button className="btn">{btnText}</button>
       </Link>
       <div className="price-and-rating">
-        <span className="price">Starting at {price}</span>
+        <span className="priceservice">Starting at {price}</span>
         <StarRatings
           rating={rating}
           starRatedColor="gold"
           starHoverColor="yellow"
           numberOfStars={5}
-          starDimension="20px"
+          starDimension="25px"
           starSpacing="2px"
         />
       </div>

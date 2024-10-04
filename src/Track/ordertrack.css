@@ -1,0 +1,119 @@
+/* Container styling */
+.form-container {
+    background-color: white;
+    padding: 40px;
+    border-radius: 20px;
+    width: 500px;
+    margin: auto;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: 50px;
+    transition: width 0.3s ease;
+    margin-bottom: 8%;
+  }
+  
+  /* Heading styling */
+  .form-container h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 20px;
+  }
+  
+  /* Input wrapper to align inputs side by side */
+  .input-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  /* Input field styling */
+  .input-field {
+    width: 48%;
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 50px;
+    border: 1px solid #ddd;
+    background-color: #f7f7f7;
+    color: #333;
+    text-align: center;
+    outline: none;
+  }
+  
+  .input-field::placeholder {
+    color: #777;
+    font-size: 14px;
+  }
+  
+  /* Send button styling */
+  .send-button {
+    background-color: #000;
+    color: white;
+    padding: 15px 40px;
+    font-size: 16px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+  }
+  
+  .send-button:hover {
+    background-color: #333;
+  }
+  
+  /* Media Queries for Responsiveness */
+  
+  /* Tablets and smaller laptops */
+  @media screen and (max-width: 1024px) {
+    .form-container {
+      width: 80%;
+    }
+  
+    .input-field {
+      width: 48%;
+      padding: 12px;
+      font-size: 14px;
+    }
+  
+    .send-button {
+      padding: 12px 30px;
+    }
+  }
+  
+  /* Tablets in portrait and small screens */
+  @media screen and (max-width: 768px) {
+    .form-container {
+      width: 90%;
+    }
+  
+    .input-wrapper {
+      flex-direction: column;
+    }
+  
+    .input-field {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+  
+  /* Mobile screens */
+  @media screen and (max-width: 480px) {
+    .form-container {
+        width: 80%;
+        height: 221px;
+        padding: 0;
+    }
+  
+    .input-field {
+      width: 93%;
+      padding: 10px;
+      font-size: 14px;
+    }
+  
+    .send-button {
+      padding: 10px 20px;
+      font-size: 14px;
+    }
+  }
+  
