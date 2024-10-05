@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import "./header.css";
 import { IoMdArrowDropdown } from "react-icons/io";
-import { FaBars } from 'react-icons/fa';  // Import hamburger icon
+import { FaBars } from "react-icons/fa"; // Import hamburger icon
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false); // State to handle menu toggle
@@ -23,13 +23,23 @@ const Header = () => {
         </div>
 
         {/* Navigation menu */}
-        <div className={`left_nav ${isMenuOpen ? 'active' : ''}`}>
-          <ul className={`menu ${isMenuOpen ? 'active' : ''}`}>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about-us">About US</a></li>
-            <li><a href="/contact-us">Contact US</a></li>
-            <li><a href="/ordertrack">Order Track</a></li>
-            <li><a href="/tools">Tools</a></li>
+        <div className={`left_nav ${isMenuOpen ? "active" : ""}`}>
+          <ul className={`menu ${isMenuOpen ? "active" : ""}`}>
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a href="/about-us">About US</a>
+            </li>
+            <li>
+              <a href="/contact-us">Contact US</a>
+            </li>
+            <li>
+              <a href="/ordertrack">Order Track</a>
+            </li>
+            <li>
+              <a href="/tools">Tools</a>
+            </li>
           </ul>
 
           {/* Language dropdown */}

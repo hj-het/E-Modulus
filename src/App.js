@@ -54,7 +54,7 @@ const App = () => {
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/blog" element={<Blog />} />
-        <Route path="/blog/:id" element={<BlogDetail />} />
+        <Route path="/blog/:slug" element={<BlogDetail />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/ordertrack" element={<OrderTrack />} />
        
@@ -97,7 +97,7 @@ const App = () => {
        <Route path="/buy-google-review" element={<BuyGooglereviews />} />
 
       {/* Telegram//// */}
-       <Route path="/buy-telegram-mmb" element={<BuyTelegramMember />} />
+       <Route path="/buy-telegram-members" element={<BuyTelegramMember />} />
 
        {/* LinkedIn//// */}
        <Route path="/buy-linkedin-followers" element={<BuyLinkdnFollers />} />

@@ -28,9 +28,12 @@ const BuyFbViews = () => {
   useEffect(() => {
     const fetchBoxes = async () => {
       try {
-        const response = await axios.post("https://www.thebrainmoney.com/v1/plans", {
-          type: "facebook",
-        });
+        const response = await axios.post(
+          "https://www.thebrainmoney.com/v1/plans",
+          {
+            type: "facebook",
+          }
+        );
         console.log("API Response:", response);
 
         setBoxes(response.data.data);
@@ -63,7 +66,7 @@ const BuyFbViews = () => {
           views: selectedBox.views_count,
           subtype: selectedBox.subtype,
           original_price: selectedBox.original_price,
-          platform: currentTab // currentTab holds the platform type, e.g., 'youtube', 'instagram', etc.
+          platform: currentTab, // currentTab holds the platform type, e.g., 'youtube', 'instagram', etc.
         },
       });
     } else {
@@ -85,7 +88,7 @@ const BuyFbViews = () => {
   const uniqueSubscriptionTypes = [
     ...new Set(
       boxes
-        .filter((box) => box.subtype === "views") 
+        .filter((box) => box.subtype === "views")
         .map((box) => box.subscription_type)
     ),
   ];
@@ -96,7 +99,7 @@ const BuyFbViews = () => {
       box.type === currentTab &&
       box.subtype === "views" &&
       box.subscription_type === currentSubscriptionType
-  )
+  );
 
   const currentBoxes = filteredBoxes.slice(
     currentIndex,
@@ -161,7 +164,8 @@ const BuyFbViews = () => {
             )}
           </div>
 
-          <div className="grid-container"
+          <div
+            className="grid-container"
             // style={{
             //   display: "grid",
             //   gridTemplateColumns: "repeat(2, 1fr)",
@@ -181,18 +185,22 @@ const BuyFbViews = () => {
                   <span className="number">{box.views_count}</span>
                   <span className="views">{box.subtype}</span>
                 </div>
-              <div className="right-col">
+                <div className="right-col">
                   <div className="price-section">
-                    {box.original_price > 0 && (
+                       
+                    {box.original_price > box.discount_price && (
                       <div className="original-price">
                         <del>${box.original_price.toFixed(2)}</del>
                       </div>
                     )}
+                      
                     <div className="discounted-price">
                       ${box.discount_price.toFixed(2)}
                     </div>
                   </div>
-                  {box.discount_price > 0 && (
+
+                   
+                  {box.original_price > box.discount_price && (
                     <span className="save">
                       Save{" "}
                       {Math.round(

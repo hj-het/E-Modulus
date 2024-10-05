@@ -4,8 +4,6 @@ import Services from "./Service/Service";
 import Reasons from "./Reasons/Reason";
 import Steps from "./Steps/Step";
 import Testimonials from "./Testimonial/Testimonials";
-// import FooterBanner from "./FooterBanner/FooterBanner";
-// import YouTubeCampaign from "./Components/YouTube/YouTubeCampaign";
 import ReviewForm from "./Review/ReviewForm";
 import FaqPage from "./FaqPage/QuestionPage";
 import GuaranteeSection from "./Gurrenty/GuaranteeSection";
@@ -41,7 +39,7 @@ const Home = () => {
       <ReviewForm/>
       <Testimonials />
       <Blog/>
-      {/* <FooterBanner/> */}
+     
     </div>
   );
 };

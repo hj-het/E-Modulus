@@ -70,7 +70,7 @@ console.log("testimonials===>",testimonials)
               <div className="quote-icon">“</div>
               <p className="testimonial-text">{testimonial.review}</p>
               <div className="testimonial-author">
-                <img src={testimonial.profile_photo || './images/user.webp'} alt={testimonial.name} className="testimonial-image" />
+                <img src={'./images/user.webp'} alt={testimonial.name} className="testimonial-image" />
                 <div>
                   <p className="author-name">{testimonial.name}</p>
                   <p className="author-followers">{testimonial.followers} followers</p>

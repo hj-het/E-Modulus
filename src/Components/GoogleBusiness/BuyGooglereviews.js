@@ -28,9 +28,12 @@ const BuyGooglereviews = () => {
   useEffect(() => {
     const fetchBoxes = async () => {
       try {
-        const response = await axios.post("https://www.thebrainmoney.com/v1/plans", {
-          type: "google-business",
-        });
+        const response = await axios.post(
+          "https://www.thebrainmoney.com/v1/plans",
+          {
+            type: "google-business",
+          }
+        );
         console.log("API Response:", response);
 
         setBoxes(response.data.data);
@@ -63,7 +66,7 @@ const BuyGooglereviews = () => {
           views: selectedBox.views_count,
           subtype: selectedBox.subtype,
           original_price: selectedBox.original_price,
-          platform: currentTab // currentTab holds the platform type, e.g., 'youtube', 'instagram', etc.
+          platform: currentTab, // currentTab holds the platform type, e.g., 'youtube', 'instagram', etc.
         },
       });
     } else {
@@ -83,11 +86,10 @@ const BuyGooglereviews = () => {
     }
   };
 
-
   const uniqueSubscriptionTypes = [
     ...new Set(
       boxes
-        .filter((box) => box.subtype === "random-reviews") 
+        .filter((box) => box.subtype === "random-reviews")
         .map((box) => box.subscription_type)
     ),
   ];
@@ -98,7 +100,7 @@ const BuyGooglereviews = () => {
       box.type === currentTab &&
       box.subtype === "random-reviews" &&
       box.subscription_type === currentSubscriptionType
-  )
+  );
 
   const currentBoxes = filteredBoxes.slice(
     currentIndex,
@@ -161,7 +163,8 @@ const BuyGooglereviews = () => {
             )}
           </div>
 
-          <div className="grid-container"
+          <div
+            className="grid-container"
             // style={{
             //   display: "grid",
             //   gridTemplateColumns: "repeat(2, 1fr)",
@@ -181,18 +184,22 @@ const BuyGooglereviews = () => {
                   <span className="number">{box.views_count}</span>
                   <span className="views">Review</span>
                 </div>
-              <div className="right-col">
+                <div className="right-col">
                   <div className="price-section">
-                    {box.original_price > 0 && (
+                       
+                    {box.original_price > box.discount_price && (
                       <div className="original-price">
                         <del>${box.original_price.toFixed(2)}</del>
                       </div>
                     )}
+                      
                     <div className="discounted-price">
                       ${box.discount_price.toFixed(2)}
                     </div>
                   </div>
-                  {box.discount_price > 0 && (
+
+                   
+                  {box.original_price > box.discount_price && (
                     <span className="save">
                       Save{" "}
                       {Math.round(

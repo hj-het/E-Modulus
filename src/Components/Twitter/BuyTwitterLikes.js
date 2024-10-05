@@ -28,9 +28,12 @@ const BuyTwitterLikes = () => {
   useEffect(() => {
     const fetchBoxes = async () => {
       try {
-        const response = await axios.post("https://www.thebrainmoney.com/v1/plans", {
-          type: "x",
-        });
+        const response = await axios.post(
+          "https://www.thebrainmoney.com/v1/plans",
+          {
+            type: "x",
+          }
+        );
         console.log("API Response:", response);
 
         setBoxes(response.data.data);
@@ -63,7 +66,7 @@ const BuyTwitterLikes = () => {
           views: selectedBox.views_count,
           subtype: selectedBox.subtype,
           original_price: selectedBox.original_price,
-          platform: currentTab // currentTab holds the platform type, e.g., 'youtube', 'instagram', etc.
+          platform: currentTab, // currentTab holds the platform type, e.g., 'youtube', 'instagram', etc.
         },
       });
     } else {
@@ -86,7 +89,7 @@ const BuyTwitterLikes = () => {
   const uniqueSubscriptionTypes = [
     ...new Set(
       boxes
-        .filter((box) => box.subtype === "likes") 
+        .filter((box) => box.subtype === "likes")
         .map((box) => box.subscription_type)
     ),
   ];
@@ -95,15 +98,14 @@ const BuyTwitterLikes = () => {
   const filteredBoxes = boxes.filter(
     (box) =>
       box.type === currentTab &&
-      box.subtype === "likes" 
-      // box.subscription_type === currentSubscriptionType
-  )
+      box.subtype === "likes" &&
+      box.subscription_type === currentSubscriptionType
+  );
 
   const currentBoxes = filteredBoxes.slice(
     currentIndex,
     currentIndex + itemsPerPage
   );
-
 
   if (error) {
     return <div>{error}</div>;
@@ -117,10 +119,9 @@ const BuyTwitterLikes = () => {
           Likes <span className="label-red">Fast</span>
         </h1>
         <p>
-          As the number one social media marketing company E-Modulus
-          has stepped into the world of Twitter. It's now available to buy
-          Twitter likes with affordable prices and quality guaranteed fast
-          delivery.
+          As the number one social media marketing company E-Modulus has stepped
+          into the world of Twitter. It's now available to buy Twitter likes
+          with affordable prices and quality guaranteed fast delivery.
         </p>
       </div>
 
@@ -161,7 +162,8 @@ const BuyTwitterLikes = () => {
               </p>
             )}
           </div>
-          <div className="grid-container"
+          <div
+            className="grid-container"
             // style={{
             //   display: "grid",
             //   gridTemplateColumns: "repeat(2, 1fr)",
@@ -181,18 +183,22 @@ const BuyTwitterLikes = () => {
                   <span className="number">{box.views_count}</span>
                   <span className="views">{box.subtype}</span>
                 </div>
-              <div className="right-col">
+                <div className="right-col">
                   <div className="price-section">
-                    {box.original_price > 0 && (
+                       
+                    {box.original_price > box.discount_price && (
                       <div className="original-price">
                         <del>${box.original_price.toFixed(2)}</del>
                       </div>
                     )}
+                      
                     <div className="discounted-price">
                       ${box.discount_price.toFixed(2)}
                     </div>
                   </div>
-                  {box.discount_price > 0 && (
+
+                   
+                  {box.original_price > box.discount_price && (
                     <span className="save">
                       Save{" "}
                       {Math.round(

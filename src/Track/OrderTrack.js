@@ -3,7 +3,7 @@ import './ordertrack.css';
 
 const OrderTrack = () => {
   return (
-    <div className="form-container">
+    <div className="form-containerorder">
       <h2>Enter your info</h2>
       <div className="input-wrapper">
         <input 

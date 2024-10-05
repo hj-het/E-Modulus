@@ -1,5 +1,5 @@
 /* Container styling */
-.form-container {
+.form-containerorder {
     background-color: white;
     padding: 40px;
     border-radius: 20px;
@@ -13,7 +13,7 @@
   }
   
   /* Heading styling */
-  .form-container h2 {
+  .form-containerorder h2 {
     font-size: 24px;
     font-weight: bold;
     color: #000;
@@ -66,32 +66,32 @@
   
   /* Tablets and smaller laptops */
   @media screen and (max-width: 1024px) {
-    .form-container {
+    .form-containerorder {
       width: 80%;
     }
   
-    .input-field {
+    .form-containerorder .input-field {
       width: 48%;
       padding: 12px;
       font-size: 14px;
     }
   
-    .send-button {
+   .form-containerorder .send-button {
       padding: 12px 30px;
     }
   }
   
   /* Tablets in portrait and small screens */
   @media screen and (max-width: 768px) {
-    .form-container {
+    .form-containerorder {
       width: 90%;
     }
   
-    .input-wrapper {
+    .form-containerorder .input-wrapper {
       flex-direction: column;
     }
   
-    .input-field {
+    .form-containerorder .input-field {
       width: 100%;
       margin-bottom: 10px;
     }
@@ -99,19 +99,19 @@
   
   /* Mobile screens */
   @media screen and (max-width: 480px) {
-    .form-container {
+    .form-containerorder {
         width: 80%;
         height: 221px;
         padding: 0;
     }
   
-    .input-field {
+   .form-containerorder .input-field {
       width: 93%;
       padding: 10px;
       font-size: 14px;
     }
   
-    .send-button {
+   .form-containerorder .send-button {
       padding: 10px 20px;
       font-size: 14px;
     }

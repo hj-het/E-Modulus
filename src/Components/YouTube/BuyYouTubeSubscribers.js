@@ -199,19 +199,20 @@ const BuyYouTubeSubscribers = () => {
                 </div>
                 <div className="right-col">
                   <div className="price-section">
-                    {box.original_price > 0 && (
+                       
+                    {box.original_price > box.discount_price && (
                       <div className="original-price">
                         <del>${box.original_price.toFixed(2)}</del>
                       </div>
                     )}
+                      
                     <div className="discounted-price">
-                      $
-                      {box.discount_price % 1 === 0
-                        ? box.discount_price.toFixed(0)
-                        : box.discount_price.toFixed(2)}
+                      ${box.discount_price.toFixed(2)}
                     </div>
                   </div>
-                  {box.discount_price > 0 && (
+
+                   
+                  {box.original_price > box.discount_price && (
                     <span className="save">
                       Save{" "}
                       {Math.round(

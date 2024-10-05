@@ -220,7 +220,7 @@ const SliderComponent = () => {
             <div className="dropdown-content">
               <ul>
                 <li>
-                  <a href="/buy-telegram-mmb">Buy Telegram Members</a>
+                  <a href="/buy-telegram-members">Buy Telegram Members</a>
                 </li>
               </ul>
             </div>

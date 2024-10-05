@@ -28,9 +28,12 @@ const BuyTelegramMembers = () => {
   useEffect(() => {
     const fetchBoxes = async () => {
       try {
-        const response = await axios.post("https://www.thebrainmoney.com/v1/plans", {
-          type: "telegram",
-        });
+        const response = await axios.post(
+          "https://www.thebrainmoney.com/v1/plans",
+          {
+            type: "telegram",
+          }
+        );
         console.log("API Response:", response);
 
         setBoxes(response.data.data);
@@ -183,18 +186,22 @@ const BuyTelegramMembers = () => {
                   <span className="number">{box.views_count}</span>
                   <span className="views">{box.subtype}</span>
                 </div>
-              <div className="right-col">
+                <div className="right-col">
                   <div className="price-section">
-                    {box.original_price > 0 && (
+                       
+                    {box.original_price > box.discount_price && (
                       <div className="original-price">
                         <del>${box.original_price.toFixed(2)}</del>
                       </div>
                     )}
+                      
                     <div className="discounted-price">
                       ${box.discount_price.toFixed(2)}
                     </div>
                   </div>
-                  {box.discount_price > 0 && (
+
+                   
+                  {box.original_price > box.discount_price && (
                     <span className="save">
                       Save{" "}
                       {Math.round(

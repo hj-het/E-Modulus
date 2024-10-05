@@ -28,9 +28,12 @@ const BuyLinkdnFollers = () => {
   useEffect(() => {
     const fetchBoxes = async () => {
       try {
-        const response = await axios.post("https://www.thebrainmoney.com/v1/plans", {
-          type: "linkedin",
-        });
+        const response = await axios.post(
+          "https://www.thebrainmoney.com/v1/plans",
+          {
+            type: "linkedin",
+          }
+        );
         console.log("API Response:", response);
 
         setBoxes(response.data.data);
@@ -115,11 +118,11 @@ const BuyLinkdnFollers = () => {
           Followers <span className="label-red">Fast</span>
         </h1>
         <p>
-          E-Modulus now offers your LinkedIn presence with our "Buy
-          LinkedIn Followers" service. Instantly grow your professional network,
-          increase credibility, and attract organic connections. Watch your
-          profile stand out with more followers, boosting your influence and
-          opportunities in your industry.
+          E-Modulus now offers your LinkedIn presence with our "Buy LinkedIn
+          Followers" service. Instantly grow your professional network, increase
+          credibility, and attract organic connections. Watch your profile stand
+          out with more followers, boosting your influence and opportunities in
+          your industry.
         </p>
       </div>
 
@@ -182,18 +185,22 @@ const BuyLinkdnFollers = () => {
                   <span className="number">{box.views_count}</span>
                   <span className="views">{box.subtype}</span>
                 </div>
-              <div className="right-col">
+                <div className="right-col">
                   <div className="price-section">
-                    {box.original_price > 0 && (
+                       
+                    {box.original_price > box.discount_price && (
                       <div className="original-price">
                         <del>${box.original_price.toFixed(2)}</del>
                       </div>
                     )}
+                      
                     <div className="discounted-price">
                       ${box.discount_price.toFixed(2)}
                     </div>
                   </div>
-                  {box.discount_price > 0 && (
+
+                   
+                  {box.original_price > box.discount_price && (
                     <span className="save">
                       Save{" "}
                       {Math.round(

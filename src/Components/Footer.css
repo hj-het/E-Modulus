@@ -81,3 +81,12 @@
 .footerr .site-info img:hover {
   scale: 1.25;
 }
+
+@media only screen and (max-width: 770px) {
+  .footerr .pages ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 10px; 
+    justify-items: center; 
+  }
+}
